@@ -1,0 +1,7 @@
+.done {
+    text-decoration: line-through;
+}
+
+.task-item {
+    font-size: 50px;
+}
