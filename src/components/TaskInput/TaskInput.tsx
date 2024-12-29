@@ -22,6 +22,7 @@ const TaskInput = ({ tasks, setTasks }:ITasksInput ) => {
         if (inputValue.trim() === "") {
             alert("Введите Вашу задачу")
         }
+
         else {
             setTasks([...tasks, { id: v4(), text: inputValue, status: false }]);
             setInputValue("");

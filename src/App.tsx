@@ -10,14 +10,18 @@ function App() {
 
     const [tasks, setTasks] = useState<ITask[] | []>([]);
 
-
   return (
     <>
         <div className="app">
-            <Header title={"my-todo"} />
-            <TaskInput tasks={tasks} setTasks={setTasks} />
+            <Header
+                title={"my-todo"} />
+            <TaskInput
+                tasks={tasks}
+                setTasks={setTasks} />
             <Filter />
-            <TaskList tasks={tasks} setTasks={setTasks} />
+            <TaskList
+                tasks={tasks}
+                setTasks={setTasks} />
         </div>
     </>
   )

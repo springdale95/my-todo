@@ -1,39 +1,28 @@
 import { useState } from "react";
 import "./TaskItem.css"
+import TaskItemStatusButton from "../TaskItemStatusButton/TaskItemStatusButton.tsx";
+import {ITask} from "../../types/types.ts";
+import TaskItemDeleteButton from "../TaskItemDeleteButton/TaskItemDeleteButton.tsx";
 
-const TaskItem = ({ task, tasks, setTasks }) => {
 
-    const [, setStatus] = useState(task.status);
+interface ITaskItem {
+    task: ITask;
+    tasks: ITask[];
+    setTasks: (tasks: ITask[]) => void;
+}
 
+const TaskItem = ({ task, tasks, setTasks }:ITaskItem) => {
 
-    const changeStatusButton = () => {
-        setStatus(task.status = !task.status);
-        console.log(tasks)
-
-    }
-
-    const deleteTaskButton = () => {
-        setTasks(tasks.filter((el) => el.id !== task.id));
-        tasks.splice(tasks.indexOf(task), 1);
-        console.log(tasks)
-    }
+    const [status, setStatus] = useState(task.status);
 
     return (
 
         <li
-            className={`task-item ${(task.status === true) ? "done" : ""}`}
+            className={`task-item ${(status) ? "done" : ""}`}
         >
             {task.text}
-            <button
-                onClick={changeStatusButton}
-            >
-                Done!
-            </button>
-            <button
-                onClick={deleteTaskButton}
-            >
-                Delete
-            </button>
+            <TaskItemStatusButton task={task} setStatus={setStatus} />
+            <TaskItemDeleteButton task={task} tasks={tasks} setTasks={setTasks} />
         </li>
     );
 };
