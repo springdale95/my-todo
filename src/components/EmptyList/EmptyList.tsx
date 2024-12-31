@@ -1,10 +1,8 @@
-const EmptyList = () => {
+const EmptyList = ({tasks}) => {
     return (
-        <div>
             <h1>
-                Задач пока нет
+                {tasks.length === 0 ? "Задач пока нет" : "Ваши задачи"}
             </h1>
-        </div>
     );
 };
 
