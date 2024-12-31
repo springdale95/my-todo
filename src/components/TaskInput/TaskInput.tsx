@@ -1,46 +1,15 @@
 import './TaskInput.css'
-import React, { useState } from "react";
-import { v4 } from "uuid";
-import {ITask} from "../../types/types.ts";
-
-interface IHandleChange {
-    target: {
-        value: string;
-    };
-}
+import React from "react";
 
 interface ITasksInput {
-    tasks: ITask[] | [];
-    setTasks: (task: ITask[]) => void;
+    inputValue: string;
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const TaskInput = ({ tasks, setTasks }:ITasksInput ) => {
-
-    const [inputValue, setInputValue] = useState<string>('');
-
-    const addTask = () => {
-        if (inputValue.trim() === "") {
-            alert("Введите Вашу задачу")
-        }
-
-        else {
-            setTasks([...tasks, { id: v4(), text: inputValue, status: false }]);
-            setInputValue("");
-        }
-    }
-
-    const handleChange = (event: IHandleChange) => {
-        setInputValue(event.target.value);
-    }
-
-    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            addTask();
-        }
-    }
+const TaskInput = ({ inputValue, handleChange, handleKeyPress }:ITasksInput ) => {
 
     return (
-        <>
             <input
                 type="text"
                 placeholder="Введите задачу"
@@ -48,13 +17,6 @@ const TaskInput = ({ tasks, setTasks }:ITasksInput ) => {
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
             />
-            <button
-                type="submit"
-                onClick={addTask}
-            >
-                Добавить
-            </button>
-        </>
     );
 };
 

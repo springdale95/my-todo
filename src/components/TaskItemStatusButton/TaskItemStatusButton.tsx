@@ -9,13 +9,14 @@ const TaskItemStatusButton = ({ task, setStatus }:ITaskItemStatusButton) => {
 
     const changeStatus = () => {
         setStatus(task.status = !task.status);
+        console.log(task)
     }
 
     return (
         <button
             onClick={changeStatus}
         >
-            Выполнено!
+            {(task.status) ? "Отменить выполнение" : "Выполнено"}
         </button>
     );
 };

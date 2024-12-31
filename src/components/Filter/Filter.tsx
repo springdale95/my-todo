@@ -1,15 +1,20 @@
-const Filter = () => {
+import FilterButtonAll from "../FilterButtonAll/FilterButtonAll.tsx";
+import FilterButtonActive from "../FilterButtonActive/FilterButtonActive.tsx";
+import FilterButtonDone from "../FilterButtonDone/FilterButtonDone.tsx";
+
+const Filter = ({filter, setFilter}) => {
+
     return (
         <div>
-            <button>
-                Все
-            </button>
-            <button>
-                Активные
-            </button>
-            <button>
-                Выполненные
-            </button>
+            <FilterButtonAll
+                setFilter={setFilter}
+            />
+            <FilterButtonActive
+                setFilter={setFilter}
+            />
+            <FilterButtonDone
+                setFilter={setFilter}
+            />
         </div>
     );
 };

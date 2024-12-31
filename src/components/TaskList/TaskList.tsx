@@ -6,7 +6,7 @@ interface ITaskList{
     setTasks: (tasks: ITask[]) => void;
 }
 
-const TaskList = ({ tasks, setTasks }:ITaskList) => {
+const TaskList = ({ tasks, setTasks, filter, setFilter }:ITaskList) => {
 
     return (
         <ul>
