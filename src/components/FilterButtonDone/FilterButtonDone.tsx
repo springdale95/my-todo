@@ -1,10 +1,12 @@
-import {IFilterButton} from "../../types/types.ts";
+import { IFilterButton } from '../../types/types.ts';
 
-const FilterButtonDone = ({ filter, setFilter }:IFilterButton) => {
+const FilterButtonDone = ({ filter, setFilter }: IFilterButton) => {
     return (
         <button
-            className={`filter-button ${(filter === "done") ? "filter-button__active" : ""}`}
-            onClick={() => {setFilter("done")}}
+            className={`filter-button ${filter === 'done' ? 'filter-button__active' : ''}`}
+            onClick={() => {
+                setFilter('done');
+            }}
         >
             Выполненные
         </button>

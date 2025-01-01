@@ -1,4 +1,4 @@
-import {ITask} from "../../types/types.ts";
+import { ITask } from '../../types/types.ts';
 
 interface ITaskItemDeleteButton {
     task: ITask;
@@ -6,21 +6,14 @@ interface ITaskItemDeleteButton {
     setTasks: (task: ITask[]) => void;
 }
 
-const TaskItemDeleteButton = ( {task, tasks, setTasks}:ITaskItemDeleteButton ) => {
-
+const TaskItemDeleteButton = ({ task, tasks, setTasks }: ITaskItemDeleteButton) => {
     const deleteTask = () => {
         setTasks(tasks.filter((el) => el.id !== task.id));
         tasks.splice(tasks.indexOf(task), 1);
-        console.log(tasks)
-    }
+        console.log(tasks);
+    };
 
-    return (
-        <button
-        onClick={deleteTask}
-        >
-            Удалить
-        </button>
-    );
+    return <button onClick={deleteTask}>Удалить</button>;
 };
 
 export default TaskItemDeleteButton;

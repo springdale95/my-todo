@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ITasksInput {
     inputValue: string;
@@ -6,16 +6,15 @@ interface ITasksInput {
     handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const TaskInput = ({ inputValue, handleChange, handleKeyPress }:ITasksInput ) => {
-
+const TaskInput = ({ inputValue, handleChange, handleKeyPress }: ITasksInput) => {
     return (
-            <input
-                type="text"
-                placeholder="Введите задачу"
-                value={inputValue}
-                onChange={handleChange}
-                onKeyDown={handleKeyPress}
-            />
+        <input
+            type="text"
+            placeholder="Введите задачу"
+            value={inputValue}
+            onChange={handleChange}
+            onKeyDown={handleKeyPress}
+        />
     );
 };
 

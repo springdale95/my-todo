@@ -2,13 +2,9 @@ interface TaskAddButton {
     addTask: () => void;
 }
 
-const TaskAddButton = ({ addTask }:TaskAddButton) => {
-
+const TaskAddButton = ({ addTask }: TaskAddButton) => {
     return (
-        <button
-            type="submit"
-            onClick={addTask}
-        >
+        <button type="submit" onClick={addTask}>
             Добавить
         </button>
     );

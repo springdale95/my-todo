@@ -1,21 +1,18 @@
-import {ITask} from "../../types/types.ts";
-import "./TaskListTitle.css"
+import { ITask } from '../../types/types.ts';
+import './TaskListTitle.css';
 
 interface TaskListTitle {
     tasks: ITask[];
     filter: string;
 }
 
-const TaskListTitle = ({ tasks, filter }:TaskListTitle) => {
-
+const TaskListTitle = ({ tasks, filter }: TaskListTitle) => {
     let activeCounter = 0;
     let doneCounter = 0;
 
     const counter = () => {
-        tasks.forEach((task) => (
-            task.status ? doneCounter++ : activeCounter++
-        ))
-    }
+        tasks.forEach((task) => (task.status ? doneCounter++ : activeCounter++));
+    };
 
     counter();
 
@@ -30,23 +27,21 @@ const TaskListTitle = ({ tasks, filter }:TaskListTitle) => {
     }
 
     function getEndStatusWord(count: number) {
-        return (count % 10 === 1 && count % 100 !== 11) ? 'ая' : 'ых';
+        return count % 10 === 1 && count % 100 !== 11 ? 'ая' : 'ых';
     }
 
     return (
-            <h1
-                className={"task-list-title"}
-            >
-                {
-                    tasks.length === 0 ? "Задач пока нет" :
-                        `${ (filter === "all") ?
-                            `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}` :
-                                (filter === "active") ?
-                                    `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}` :
-                                        `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
-                        }`
-                }
-            </h1>
+        <h1 className={'task-list-title'}>
+            {tasks.length === 0
+                ? 'Задач пока нет'
+                : `${
+                      filter === 'all'
+                          ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
+                          : filter === 'active'
+                            ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
+                            : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
+                  }`}
+        </h1>
     );
 };
 

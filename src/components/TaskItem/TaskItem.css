@@ -1,9 +1,10 @@
 .done {
-    text-decoration: line-through;
+    text-decoration: underline;
 }
 
 .task-item {
     display: flex;
     justify-content: space-between;
     font-size: 24px;
+    column-gap: 50px;
 }

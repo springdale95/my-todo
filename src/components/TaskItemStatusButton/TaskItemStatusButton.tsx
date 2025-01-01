@@ -1,4 +1,4 @@
-import {ITask} from "../../types/types.ts";
+import { ITask } from '../../types/types.ts';
 
 interface ITaskItemStatusButton {
     task: ITask;
@@ -6,20 +6,13 @@ interface ITaskItemStatusButton {
     setTasks: (tasks: ITask[]) => void;
 }
 
-const TaskItemStatusButton = ({ task, tasks, setTasks }:ITaskItemStatusButton) => {
-
+const TaskItemStatusButton = ({ task, tasks, setTasks }: ITaskItemStatusButton) => {
     const changeStatus = () => {
-        setTasks(tasks.map((t) =>
-            t.id === task.id ? { ...t, status: !t.status } : t
-        ));
-    }
+        setTasks(tasks.map((t) => (t.id === task.id ? { ...t, status: !t.status } : t)));
+    };
 
     return (
-        <button
-            onClick={changeStatus}
-        >
-            {(task.status) ? "Отменить выполнение" : "Выполнено"}
-        </button>
+        <button onClick={changeStatus}>{task.status ? 'Отменить выполнение' : 'Выполнено'}</button>
     );
 };
 
