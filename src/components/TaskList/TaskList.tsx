@@ -1,6 +1,7 @@
 import TaskItem from "../TaskItem/TaskItem.tsx";
 import {ITask} from "../../types/types.ts";
-import EmptyList from "../EmptyList/EmptyList.tsx";
+import TaskListTitle from "../TaskListTitle/TaskListTitle.tsx";
+import './TaskList.css'
 
 interface ITaskList{
     tasks: ITask[];
@@ -10,17 +11,22 @@ interface ITaskList{
 
 const TaskList = ({ tasks, setTasks, filter }:ITaskList) => {
 
-    const filteredTaskList = () => {
-        if(filter === "active") return tasks.filter((el) => !el.status);
-        if(filter === "done") return tasks.filter((el) => el.status);
-        return tasks;
-    }
+    const filteredTaskList = tasks.filter((task) =>
+        filter === "active" ? !task.status :
+            filter === "done" ? task.status :
+                true
+    );
 
     return (
-        <div>
-            <EmptyList tasks={tasks}/>
+        <div
+            className={"task-list"}
+        >
+            <TaskListTitle
+                tasks={tasks}
+                filter={filter}
+            />
             <ul>
-                {filteredTaskList().map((task) => (
+                {filteredTaskList.map((task) => (
                     <TaskItem
                         key={task.id}
                         task={task}

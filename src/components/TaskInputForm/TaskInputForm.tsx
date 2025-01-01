@@ -3,7 +3,6 @@ import TaskInput from "../TaskInput/TaskInput.tsx";
 import TaskAddButton from "../TaskAddButton/TaskAddButton.tsx";
 import {v4} from "uuid";
 import {ITask} from "../../types/types.ts";
-import "./TaskInputForm.css"
 
 interface ITaskInputForm {
     tasks: ITask[];

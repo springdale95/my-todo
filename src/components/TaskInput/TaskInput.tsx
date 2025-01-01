@@ -1,4 +1,3 @@
-import './TaskInput.css'
 import React from "react";
 
 interface ITasksInput {

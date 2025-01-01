@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./TaskItem.css"
 import TaskItemStatusButton from "../TaskItemStatusButton/TaskItemStatusButton.tsx";
 import {ITask} from "../../types/types.ts";
@@ -13,16 +12,16 @@ interface ITaskItem {
 
 const TaskItem = ({ task, tasks, setTasks }:ITaskItem) => {
 
-    const [status, setStatus] = useState(task.status);
-
     return (
 
         <li
-            className={`task-item ${(status) ? "done" : ""}`}
+            className={`task-item ${(task.status) ? "done" : ""}`}
         >
             {task.text}
-            <TaskItemStatusButton task={task} setStatus={setStatus} />
-            <TaskItemDeleteButton task={task} tasks={tasks} setTasks={setTasks} />
+            <div>
+                <TaskItemStatusButton task={task} tasks={tasks} setTasks={setTasks} />
+                <TaskItemDeleteButton task={task} tasks={tasks} setTasks={setTasks} />
+            </div>
         </li>
     );
 };

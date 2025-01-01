@@ -10,6 +10,7 @@ function App() {
 
     const [tasks, setTasks] = useState<ITask[] | []>([]);
     const [filter, setFilter] = useState<string>("all");
+    console.log(tasks)
 
   return (
     <>

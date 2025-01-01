@@ -1,6 +1,7 @@
 import FilterButtonAll from "../FilterButtonAll/FilterButtonAll.tsx";
 import FilterButtonActive from "../FilterButtonActive/FilterButtonActive.tsx";
 import FilterButtonDone from "../FilterButtonDone/FilterButtonDone.tsx";
+import "./Filter.css"
 
 interface IFilter {
     filter: string;

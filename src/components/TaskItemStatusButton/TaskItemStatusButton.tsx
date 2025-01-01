@@ -2,14 +2,16 @@ import {ITask} from "../../types/types.ts";
 
 interface ITaskItemStatusButton {
     task: ITask;
-    setStatus: (status: boolean) => void;
+    tasks: ITask[];
+    setTasks: (tasks: ITask[]) => void;
 }
 
-const TaskItemStatusButton = ({ task, setStatus }:ITaskItemStatusButton) => {
+const TaskItemStatusButton = ({ task, tasks, setTasks }:ITaskItemStatusButton) => {
 
     const changeStatus = () => {
-        setStatus(task.status = !task.status);
-        console.log(task)
+        setTasks(tasks.map((t) =>
+            t.id === task.id ? { ...t, status: !t.status } : t
+        ));
     }
 
     return (
