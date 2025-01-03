@@ -7,4 +7,5 @@ export interface ITask {
 export interface IFilterButton {
     filter: string;
     setFilter: (filter: string) => void;
+    filterButtonName: string;
 }

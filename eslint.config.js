@@ -6,7 +6,9 @@ import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 
 export default tseslint.config(
-    { ignores: ['dist'] },
+    {
+        ignores: ['dist'],
+    },
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
         files: ['**/*.{ts,tsx}'],
@@ -21,16 +23,20 @@ export default tseslint.config(
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-            'react/jsx-max-props-per-line': [1, { maximum: 1 }],
-            'react/jsx-first-prop-new-line': [1, 'always'],
-            'react/jsx-closing-bracket-location': [
-                'error',
+            'react-refresh/only-export-components': [
+                'warn',
                 {
-                    nonEmpty: 'after-props', // Закрывающая скобка после свойств для непустых элементов
-                    selfClosing: 'after-props', // Закрывающая скобка после свойств для самозакрывающихся элементов
+                    allowConstantExport: true,
                 },
             ],
+            'react/jsx-max-props-per-line': [
+                1,
+                {
+                    maximum: 1,
+                },
+            ],
+            'react/jsx-first-prop-new-line': [1, 'always'],
+            'react/jsx-closing-bracket-location': [1, 'tag-aligned'],
         },
     },
 );

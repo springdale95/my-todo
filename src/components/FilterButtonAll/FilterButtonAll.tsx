@@ -1,6 +1,6 @@
 import { IFilterButton } from '../../types/types.ts';
 
-const FilterButtonAll = ({ filter, setFilter }: IFilterButton) => {
+const FilterButtonAll = ({ filter, setFilter, filterButtonName }: IFilterButton) => {
     return (
         <button
             className={`filter-button ${filter === 'all' ? 'filter-button__active' : ''}`}
@@ -8,7 +8,7 @@ const FilterButtonAll = ({ filter, setFilter }: IFilterButton) => {
                 setFilter('all');
             }}
         >
-            Все
+            {filterButtonName}
         </button>
     );
 };

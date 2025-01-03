@@ -1,14 +1,12 @@
 import { IFilterButton } from '../../types/types.ts';
 
-const FilterButtonActive = ({ filter, setFilter }: IFilterButton) => {
+const FilterButtonActive = ({ filter, setFilter, filterButtonName }: IFilterButton) => {
     return (
         <button
             className={`filter-button ${filter === 'active' ? 'filter-button__active' : ''}`}
-            onClick={() => {
-                setFilter('active');
-            }}
+            onClick={() => {setFilter('active')}}
         >
-            Активные
+            {filterButtonName}
         </button>
     );
 };

@@ -6,8 +6,14 @@ interface IProps {
 
 const Header = ({ title }: IProps) => {
     return (
-        <header className="header">
-            <h1 className="title">{title}</h1>
+        <header
+            className="header"
+        >
+            <h1
+                className="title"
+            >
+                {title}
+            </h1>
         </header>
     );
 };

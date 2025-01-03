@@ -1,3 +1,7 @@
 .task-list {
-    width: 50vw;
+}
+
+.task-list-buttons {
+    display: flex;
+    justify-content: center;
 }

@@ -7,9 +7,11 @@ import { ITask } from '../../types/types.ts';
 interface ITaskInputForm {
     tasks: ITask[];
     setTasks: (task: ITask[]) => void;
+    setFilter: (filter: string) => void;
 }
 
-const TaskInputForm = ({ tasks, setTasks }: ITaskInputForm) => {
+
+const TaskInputForm = ({ tasks, setTasks, setFilter }: ITaskInputForm) => {
     const [inputValue, setInputValue] = useState<string>('');
 
     const addTask = () => {
@@ -19,9 +21,16 @@ const TaskInputForm = ({ tasks, setTasks }: ITaskInputForm) => {
             alert('Задача уже введена');
             setInputValue('');
         } else {
-            setTasks([...tasks, { id: v4(), text: inputValue.trim(), status: false }]);
+            setTasks([...tasks,
+                {
+                    id: v4(),
+                    text: inputValue.trim(),
+                    status: false,
+                },
+            ]);
             setInputValue('');
         }
+        setFilter('all')
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,13 +49,17 @@ const TaskInputForm = ({ tasks, setTasks }: ITaskInputForm) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}
+        >
             <TaskInput
                 inputValue={inputValue}
                 handleChange={handleChange}
                 handleKeyPress={handleKeyPress}
             />
-            <TaskAddButton addTask={addTask} />
+            <TaskAddButton
+                addTask={addTask}
+            />
         </form>
     );
 };

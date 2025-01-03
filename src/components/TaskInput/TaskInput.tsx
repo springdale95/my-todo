@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 } from 'uuid';
 
 interface ITasksInput {
     inputValue: string;
@@ -9,6 +10,7 @@ interface ITasksInput {
 const TaskInput = ({ inputValue, handleChange, handleKeyPress }: ITasksInput) => {
     return (
         <input
+            id={v4()}
             type="text"
             placeholder="Введите задачу"
             value={inputValue}
