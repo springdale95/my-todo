@@ -12,7 +12,6 @@ function App() {
 
     return (
         <div className="app">
-
             <Header title={'my-todo'} />
 
             <TaskInputForm tasks={tasks} setTasks={setTasks} />
@@ -20,7 +19,6 @@ function App() {
             <Filter filter={filter} setFilter={setFilter} />
 
             <TaskList tasks={tasks} setTasks={setTasks} filter={filter} />
-
         </div>
     );
 }
