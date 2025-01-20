@@ -1,26 +1,31 @@
 import { ITask } from '../../types/types.ts';
+import axios from 'axios';
 
 interface ITaskItemDeleteButton {
     task: ITask;
-    tasks: ITask[];
-    setTasks: (task: ITask[]) => void;
-    taskButtonName: string
+    taskButtonName: string;
+    url: string;
+    getAllTasks: () => Promise<void>;
 }
 
-const TaskItemDeleteButton = ({ task, tasks, setTasks, taskButtonName }: ITaskItemDeleteButton) => {
+const TaskItemDeleteButton = ({ task, taskButtonName, url, getAllTasks }: ITaskItemDeleteButton) => {
     const deleteTask = () => {
-        setTasks(tasks.filter((el) => el.id !== task.id));
-        tasks.splice(tasks.indexOf(task), 1);
-        console.log(tasks);
+        axios.delete(url + task.id)
+            .then(response => {
+                console.log('Задача удалена', response.data);
+                getAllTasks();
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        // setTasks(tasks.filter((el) => el.id !== task.id));
+        // tasks.splice(tasks.indexOf(task), 1);
+        // console.log(tasks);
     };
 
-    return (
-        <button
-            onClick={deleteTask}
-        >
-            {taskButtonName}
-        </button>
-    );
+    return <button
+        onClick={deleteTask}
+           >{taskButtonName}</button>;
 };
 
 export default TaskItemDeleteButton;

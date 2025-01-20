@@ -5,17 +5,17 @@ import TaskItemDeleteButton from '../TaskItemDeleteButton/TaskItemDeleteButton.t
 
 interface ITaskItem {
     task: ITask;
-    tasks: ITask[];
-    setTasks: (tasks: ITask[]) => void;
+    url: string;
+    getAllTasks: () => Promise<void>;
 }
 
 enum TaskButtonsNames {
     Done = 'Выполнено',
     Delete = 'Удалить',
-    CancelDone = 'Отменить выполнение'
+    CancelDone = 'Отменить выполнение',
 }
 
-const TaskItem = ({ task, tasks, setTasks }: ITaskItem) => {
+const TaskItem = ({ task, url, getAllTasks }: ITaskItem) => {
     return (
         <li
             className={`task-item ${task.status ? 'done' : ''}`}
@@ -24,15 +24,15 @@ const TaskItem = ({ task, tasks, setTasks }: ITaskItem) => {
             <div>
                 <TaskItemStatusButton
                     task={task}
-                    tasks={tasks}
-                    setTasks={setTasks}
                     taskButtonNames={[TaskButtonsNames.Done, TaskButtonsNames.CancelDone]}
+                    url={url}
+                    getAllTasks={getAllTasks}
                 />
                 <TaskItemDeleteButton
                     task={task}
-                    tasks={tasks}
-                    setTasks={setTasks}
                     taskButtonName={TaskButtonsNames.Delete}
+                    url={url}
+                    getAllTasks={getAllTasks}
                 />
             </div>
         </li>

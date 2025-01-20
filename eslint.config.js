@@ -37,6 +37,7 @@ export default tseslint.config(
             ],
             'react/jsx-first-prop-new-line': [1, 'always'],
             'react/jsx-closing-bracket-location': [1, 'tag-aligned'],
+            "react/jsx-indent-props": [2, 4],
         },
     },
 );

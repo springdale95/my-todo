@@ -1,26 +1,30 @@
 import { ITask } from '../../types/types.ts';
+import axios from 'axios';
 
 interface ITaskItemStatusButton {
-    task: ITask,
-    tasks: ITask[],
-    setTasks: (tasks: ITask[]) => void,
-    taskButtonNames: string[],
+    task: ITask;
+    taskButtonNames: string[];
+    url: string;
+    getAllTasks: () => Promise<void>;
 }
 
-const TaskItemStatusButton = ({ task, tasks, setTasks, taskButtonNames }: ITaskItemStatusButton) => {
-    const changeStatus = () => {
-        setTasks(
-            tasks.map((t) =>
-                t.id === task.id ? { ...t, status: !t.status} : t,
-            ),
-        );
+const TaskItemStatusButton = ({ task, taskButtonNames, url, getAllTasks }: ITaskItemStatusButton) => {
+    const changeStatus = async () => {
+        try {
+            const updatedData = {status: !task.status};
+            const response = await axios.put(url + task.id, updatedData);
+            getAllTasks();
+            console.log('Статус обновлен:', response.data);
+        } catch (error) {
+            console.error('Ошибка при обновлении статуса:', error);
+        }
     };
 
     return (
         <button
             onClick={changeStatus}
         >
-            {task.status ? taskButtonNames[1] : taskButtonNames[0] }
+            {task.status ? taskButtonNames[1] : taskButtonNames[0]}
         </button>
     );
 };

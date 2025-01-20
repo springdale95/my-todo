@@ -11,9 +11,7 @@ const Header = ({ title }: IProps) => {
         >
             <h1
                 className="title"
-            >
-                {title}
-            </h1>
+            >{title}</h1>
         </header>
     );
 };

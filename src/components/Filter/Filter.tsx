@@ -17,7 +17,6 @@ enum FilterButtonsNames {
 const Filter = ({ filter, setFilter }: IFilter) => {
     return (
         <div>
-
             <FilterButtonAll
                 filter={filter}
                 setFilter={setFilter}
@@ -28,7 +27,6 @@ const Filter = ({ filter, setFilter }: IFilter) => {
                 filter={filter}
                 setFilter={setFilter}
                 filterButtonName={FilterButtonsNames.Active}
-
             />
 
             <FilterButtonDone
@@ -36,7 +34,6 @@ const Filter = ({ filter, setFilter }: IFilter) => {
                 setFilter={setFilter}
                 filterButtonName={FilterButtonsNames.Done}
             />
-
         </div>
     );
 };

@@ -1,36 +1,44 @@
 import React, { useState } from 'react';
 import TaskInput from '../TaskInput/TaskInput.tsx';
 import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
-import { v4 } from 'uuid';
 import { ITask } from '../../types/types.ts';
+import axios from 'axios';
 
 interface ITaskInputForm {
     tasks: ITask[];
-    setTasks: (task: ITask[]) => void;
     setFilter: (filter: string) => void;
+    url: string;
+    getAllTasks: () => Promise<void>;
 }
 
-
-const TaskInputForm = ({ tasks, setTasks, setFilter }: ITaskInputForm) => {
+const TaskInputForm = ({ tasks, setFilter, url, getAllTasks }: ITaskInputForm) => {
     const [inputValue, setInputValue] = useState<string>('');
 
-    const addTask = () => {
+    const addTask = async () => {
         if (inputValue.trim() === '') {
             alert('Введите Вашу задачу');
+            return;
         } else if (tasks.find((el) => el.text === inputValue)) {
             alert('Задача уже введена');
             setInputValue('');
+            return;
         } else {
-            setTasks([...tasks,
-                {
-                    id: v4(),
-                    text: inputValue.trim(),
-                    status: false,
-                },
-            ]);
+            const newTask = {
+                text: inputValue.trim(),
+                status: false,
+            }
+            axios.post(url, newTask)
+                .then((response) => {
+                    console.log('Задача создана', response.data);
+                    getAllTasks();
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+
             setInputValue('');
         }
-        setFilter('all')
+        setFilter('all');
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
