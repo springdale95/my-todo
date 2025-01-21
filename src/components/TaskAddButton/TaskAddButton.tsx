@@ -3,7 +3,7 @@ interface TaskAddButton {
 }
 
 enum TaskAddButtonName {
-    Add = 'Добавить'
+    Add = 'Добавить',
 }
 
 const TaskAddButton = ({ addTask }: TaskAddButton) => {

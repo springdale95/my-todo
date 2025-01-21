@@ -34,10 +34,14 @@ const TaskListTitle = ({ tasks, filter }: TaskListTitle) => {
         <h2
             className={'task-list-title'}
         >
-            {tasks.length === 0 ? 'Задач пока нет' :
-                `${filter === 'all' ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}` :
-                    filter === 'active' ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}` :
-                        `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
+            {tasks.length === 0
+                ? 'Задач пока нет'
+                : `${
+                      filter === 'all'
+                          ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
+                          : filter === 'active'
+                            ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
+                            : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
                   }
             `}
         </h2>

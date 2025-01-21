@@ -7,20 +7,19 @@ import './TaskList.css';
 
 interface ITaskList {
     tasks: ITask[];
-    setTasks: (tasks: ITask[]) => void;
     filter: string;
+    url: string;
+    getAllTasks: () => Promise<void>;
 }
 
 enum TaskListButtonsNames {
-    DeleteAll = "Удалить все",
-    DoneAll = "Выполнить все"
+    DeleteAll = 'Удалить все',
+    DoneAll = 'Выполнить все',
 }
 
-const TaskList = ({ tasks, setTasks, filter }: ITaskList) => {
+const TaskList = ({ tasks, filter, url, getAllTasks }: ITaskList) => {
     const filteredTaskList = tasks.filter((task) =>
-        filter === 'active' ? !task.status :
-            filter === 'done' ? task.status :
-                true,
+        filter === 'active' ? !task.status : filter === 'done' ? task.status : true,
     );
 
     return (
@@ -36,27 +35,30 @@ const TaskList = ({ tasks, setTasks, filter }: ITaskList) => {
                     <TaskItem
                         key={task.id}
                         task={task}
-                        tasks={tasks}
-                        setTasks={setTasks}
+                        url={url}
+                        getAllTasks={getAllTasks}
                     />
                 ))}
             </ul>
-            { tasks.length > 0 ?
-            <div
-                className={'task-list-buttons'}
-            >
-                <TaskListDoneButton
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    taskListButtonName={TaskListButtonsNames.DoneAll}
-                />
-                <TaskListDeleteButton
-                    setTasks={setTasks}
-                    taskListButtonName={TaskListButtonsNames.DeleteAll}
-                />
-            </div>
-                : null
-            }
+            {tasks.length > 0 ? (
+                <div
+                    className={'task-list-buttons'}
+                >
+                    <TaskListDoneButton
+                        tasks={tasks}
+                        taskListButtonName={TaskListButtonsNames.DoneAll}
+                        url={url}
+                        getAllTasks={getAllTasks}
+                    />
+                    <TaskListDeleteButton
+                        tasks={tasks}
+                        taskListButtonName={TaskListButtonsNames.DeleteAll}
+                        url={url}
+                        getAllTasks={getAllTasks}
+                    />
+                </div>
+            )
+                : null}
         </div>
     );
 };

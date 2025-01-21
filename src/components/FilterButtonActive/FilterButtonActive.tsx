@@ -4,7 +4,9 @@ const FilterButtonActive = ({ filter, setFilter, filterButtonName }: IFilterButt
     return (
         <button
             className={`filter-button ${filter === 'active' ? 'filter-button__active' : ''}`}
-            onClick={() => {setFilter('active')}}
+            onClick={() => {
+                setFilter('active');
+            }}
         >
             {filterButtonName}
         </button>
