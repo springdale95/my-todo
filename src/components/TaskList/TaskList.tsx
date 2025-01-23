@@ -8,8 +8,6 @@ import './TaskList.css';
 interface ITaskList {
     tasks: ITask[];
     filter: string;
-    url: string;
-    getAllTasks: () => Promise<void>;
 }
 
 enum TaskListButtonsNames {
@@ -17,7 +15,7 @@ enum TaskListButtonsNames {
     DoneAll = 'Выполнить все',
 }
 
-const TaskList = ({ tasks, filter, url, getAllTasks }: ITaskList) => {
+const TaskList = ({ tasks, filter }: ITaskList) => {
     const filteredTaskList = tasks.filter((task) =>
         filter === 'active' ? !task.status : filter === 'done' ? task.status : true,
     );
@@ -35,8 +33,6 @@ const TaskList = ({ tasks, filter, url, getAllTasks }: ITaskList) => {
                     <TaskItem
                         key={task.id}
                         task={task}
-                        url={url}
-                        getAllTasks={getAllTasks}
                     />
                 ))}
             </ul>
@@ -47,14 +43,10 @@ const TaskList = ({ tasks, filter, url, getAllTasks }: ITaskList) => {
                     <TaskListDoneButton
                         tasks={tasks}
                         taskListButtonName={TaskListButtonsNames.DoneAll}
-                        url={url}
-                        getAllTasks={getAllTasks}
                     />
                     <TaskListDeleteButton
                         tasks={tasks}
                         taskListButtonName={TaskListButtonsNames.DeleteAll}
-                        url={url}
-                        getAllTasks={getAllTasks}
                     />
                 </div>
             )

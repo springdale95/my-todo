@@ -7,8 +7,7 @@ import axios from 'axios';
 interface ITaskInputForm {
     tasks: ITask[];
     setFilter: (filter: string) => void;
-    url: string;
-    getAllTasks: () => Promise<void>;
+
 }
 
 const TaskInputForm = ({ tasks, setFilter, url, getAllTasks }: ITaskInputForm) => {
