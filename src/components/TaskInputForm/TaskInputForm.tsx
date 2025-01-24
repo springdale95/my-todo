@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import TaskInput from '../TaskInput/TaskInput.tsx';
 import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
 import { ITask } from '../../types/types.ts';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchAddTask } from '../../store/tasks/fetchTasksData.ts';
 
 interface ITaskInputForm {
     tasks: ITask[];
     setFilter: (filter: string) => void;
-
 }
 
-const TaskInputForm = ({ tasks, setFilter, url, getAllTasks }: ITaskInputForm) => {
+const TaskInputForm = ({ tasks, setFilter }: ITaskInputForm) => {
     const [inputValue, setInputValue] = useState<string>('');
+    const dispatch = useDispatch();
 
     const addTask = async () => {
         if (inputValue.trim() === '') {
@@ -24,17 +25,10 @@ const TaskInputForm = ({ tasks, setFilter, url, getAllTasks }: ITaskInputForm) =
         } else {
             const newTask = {
                 text: inputValue.trim(),
-                status: false,
+                status: false
             }
-            axios.post(url, newTask)
-                .then((response) => {
-                    console.log('Задача создана', response.data);
-                    getAllTasks();
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
 
+            dispatch(fetchAddTask(newTask));
             setInputValue('');
         }
         setFilter('all');
@@ -51,7 +45,7 @@ const TaskInputForm = ({ tasks, setFilter, url, getAllTasks }: ITaskInputForm) =
         }
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     };
 

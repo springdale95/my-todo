@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasksData } from './fetchTasksData.ts';
-
-export interface ITask {
-    id: string;
-    text: string;
-    status: boolean;
-}
+import { fetchAddTask, fetchGetTasks } from './fetchTasksData.ts';
+import { ITask } from '../../types/types.ts';
 
 interface TasksState {
     tasks: ITask[];
@@ -19,23 +14,45 @@ const initialState: TasksState = {
     error: null,
 }
 
-const tasksSlice = createSlice({
-    name: "tasks",
+const getTasksSlice = createSlice({
+    name: "getTasks",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchTasksData.pending, (state) => {
+            .addCase(fetchGetTasks.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchTasksData.fulfilled, (state, action) => {
+            .addCase(fetchGetTasks.fulfilled, (state, action) => {
                 state.tasks = action.payload;
             })
-            .addCase(fetchTasksData.rejected, (state, action) => {
+            .addCase(fetchGetTasks.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
     },
 })
 
-export const tasksReducer = tasksSlice.reducer;
+const addTaskSlice = createSlice({
+    name: "addTasks",
+    initialState, // ?????
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchAddTask.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchAddTask.fulfilled, (state, action) => {
+                state.loading = false;
+                console.log(action.payload);
+                state.tasks.push(action.payload);
+            })
+            .addCase(fetchAddTask.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Failed to fetch tasks.';
+            })
+    },
+})
+
+export const getTasksReducer = getTasksSlice.reducer;
+export const addTaskReducer = addTaskSlice.reducer;
