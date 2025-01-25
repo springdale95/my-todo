@@ -3,7 +3,7 @@ import TaskInput from '../TaskInput/TaskInput.tsx';
 import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
 import { ITask } from '../../types/types.ts';
 import { useDispatch } from 'react-redux';
-import { fetchAddTask } from '../../store/tasks/fetchTasksData.ts';
+import { fetchAddTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
 
 interface ITaskInputForm {
     tasks: ITask[];
@@ -14,7 +14,7 @@ const TaskInputForm = ({ tasks, setFilter }: ITaskInputForm) => {
     const [inputValue, setInputValue] = useState<string>('');
     const dispatch = useDispatch();
 
-    const addTask = async () => {
+    const addTask = () => {
         if (inputValue.trim() === '') {
             alert('Введите Вашу задачу');
             return;
@@ -27,8 +27,8 @@ const TaskInputForm = ({ tasks, setFilter }: ITaskInputForm) => {
                 text: inputValue.trim(),
                 status: false
             }
-
             dispatch(fetchAddTask(newTask));
+            dispatch(fetchGetTasks())
             setInputValue('');
         }
         setFilter('all');
@@ -45,7 +45,7 @@ const TaskInputForm = ({ tasks, setFilter }: ITaskInputForm) => {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     };
 

@@ -24,28 +24,19 @@ const getTasksSlice = createSlice({
                 state.loading = true;
             })
             .addCase(fetchGetTasks.fulfilled, (state, action) => {
+                state.loading = false;
                 state.tasks = action.payload;
             })
             .addCase(fetchGetTasks.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
-    },
-})
-
-const addTaskSlice = createSlice({
-    name: "addTasks",
-    initialState, // ?????
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
             .addCase(fetchAddTask.pending, (state) => {
                 state.loading = true;
             })
             .addCase(fetchAddTask.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log(action.payload);
-                state.tasks.push(action.payload);
+                state.tasks = [...state.tasks, action.payload];
             })
             .addCase(fetchAddTask.rejected, (state, action) => {
                 state.loading = false;
@@ -55,4 +46,3 @@ const addTaskSlice = createSlice({
 })
 
 export const getTasksReducer = getTasksSlice.reducer;
-export const addTaskReducer = addTaskSlice.reducer;
