@@ -1,40 +1,38 @@
 import './TaskItem.css';
-import TaskItemStatusButton from '../TaskItemStatusButton/TaskItemStatusButton.tsx';
 import { ITask } from '../../types/types.ts';
-import TaskItemDeleteButton from '../TaskItemDeleteButton/TaskItemDeleteButton.tsx';
+import { useState } from 'react';
+import TaskItemEditForm from '../TaskItemEdit/TaskItemEditForm.tsx';
+import TaskItemView from '../TaskItemView/TaskItemView.tsx';
 
 interface ITaskItem {
     task: ITask;
-    url: string;
-    getAllTasks: () => Promise<void>;
+    tasks: ITask[]
 }
 
-enum TaskButtonsNames {
-    Done = 'Выполнено',
-    Delete = 'Удалить',
-    CancelDone = 'Отменить выполнение',
-}
+const TaskItem = ({ task, tasks }: ITaskItem) => {
+    const [isEditing, setIsEditing] = useState(false);
 
-const TaskItem = ({ task, url, getAllTasks }: ITaskItem) => {
+    const handleEditToggle = () => {
+        setIsEditing(!isEditing);
+    };
+
     return (
         <li
             className={`task-item ${task.status ? 'done' : ''}`}
         >
-            {task.text}
-            <div>
-                <TaskItemStatusButton
+            {!isEditing ?
+                <TaskItemView
                     task={task}
-                    taskButtonNames={[TaskButtonsNames.Done, TaskButtonsNames.CancelDone]}
-                    url={url}
-                    getAllTasks={getAllTasks}
+                    handleEditToggle={handleEditToggle}
                 />
-                <TaskItemDeleteButton
-                    task={task}
-                    taskButtonName={TaskButtonsNames.Delete}
-                    url={url}
-                    getAllTasks={getAllTasks}
-                />
-            </div>
+            :
+            <TaskItemEditForm
+                task={task}
+                tasks={tasks}
+                setIsEditing={setIsEditing}
+                handleEditToggle={handleEditToggle}
+            />
+            }
         </li>
     );
 };

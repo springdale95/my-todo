@@ -1,31 +1,25 @@
 import { ITask } from '../../types/types.ts';
-import axios from 'axios';
+import { fetchDeleteTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
+import { useDispatch } from 'react-redux';
 
 interface ITaskItemDeleteButton {
     task: ITask;
     taskButtonName: string;
-    url: string;
-    getAllTasks: () => Promise<void>;
 }
 
-const TaskItemDeleteButton = ({ task, taskButtonName, url, getAllTasks }: ITaskItemDeleteButton) => {
+const TaskItemDeleteButton = ({ task, taskButtonViewName }: ITaskItemDeleteButton) => {
+    const dispatch = useDispatch();
+
     const deleteTask = () => {
-        axios.delete(url + task.id)
-            .then(response => {
-                console.log('Задача удалена', response.data);
-                getAllTasks();
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-        // setTasks(tasks.filter((el) => el.id !== task.id));
-        // tasks.splice(tasks.indexOf(task), 1);
-        // console.log(tasks);
-    };
+        dispatch(fetchDeleteTask(task));
+        dispatch(fetchGetTasks());
+    }
 
     return <button
         onClick={deleteTask}
-           >{taskButtonName}</button>;
+           >
+                {taskButtonViewName}
+           </button>;
 };
 
 export default TaskItemDeleteButton;
