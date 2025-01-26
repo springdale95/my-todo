@@ -1,7 +1,7 @@
 import './TaskItem.css';
 import { ITask } from '../../types/types.ts';
 import { useState } from 'react';
-import TaskItemEditForm from '../TaskItemEdit/TaskItemEditForm.tsx';
+import TaskItemEdit from '../TaskItemEdit/TaskItemEdit.tsx';
 import TaskItemView from '../TaskItemView/TaskItemView.tsx';
 
 interface ITaskItem {
@@ -26,7 +26,7 @@ const TaskItem = ({ task, tasks }: ITaskItem) => {
                     handleEditToggle={handleEditToggle}
                 />
             :
-            <TaskItemEditForm
+            <TaskItemEdit
                 task={task}
                 tasks={tasks}
                 setIsEditing={setIsEditing}
