@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { ITask } from '../../types/types.ts';
 
 interface ITaskListDeleteButton {
@@ -21,9 +20,7 @@ const TaskListDeleteButton = ({ tasks, taskListButtonName, url, getAllTasks }: I
     //     }
     // };
 
-    return <button
-        // onClick={deleteAllTasks}
-           >
+    return <button >
         {taskListButtonName}
     </button>;
 };

@@ -18,7 +18,7 @@ const TaskInputForm = ({ tasks, setFilter }: ITaskInputForm) => {
         if (inputValue.trim() === '') {
             alert('Введите Вашу задачу');
             return;
-        } else if (tasks.find((el) => el.text === inputValue)) {
+        } else if (tasks.find((item) => item.text === inputValue)) {
             alert('Задача уже введена');
             setInputValue('');
             return;

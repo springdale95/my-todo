@@ -26,9 +26,7 @@ const TaskListDoneButton = ({ tasks, taskListButtonName }: ITaskListDoneButton) 
     //
     // };
 
-    return <button
-        // onClick={allDone}
-           >{taskListButtonName}</button>;
+    return <button >{taskListButtonName}</button>;
 };
 
 export default TaskListDoneButton;

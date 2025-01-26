@@ -14,7 +14,7 @@ function App() {
     const [filter, setFilter] = useState<string>('all');
 
     useEffect(() => {
-        dispatch(fetchGetTasks()); //?????
+        dispatch(fetchGetTasks());
     }, [dispatch]);
 
     
@@ -22,9 +22,7 @@ function App() {
         <div
             className="app"
         >
-            <Header
-                title={'my-todo'}
-            />
+            <Header />
 
             <TaskInputForm
                 tasks={tasks}

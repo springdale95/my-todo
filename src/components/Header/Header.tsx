@@ -1,17 +1,19 @@
 import './Header.css';
 
-interface IProps {
-    title: string;
-}
 
-const Header = ({ title }: IProps) => {
+
+const Header = () => {
+    const title = 'my-todo';
+
     return (
         <header
             className="header"
         >
             <h1
                 className="title"
-            >{title}</h1>
+            >
+                {title}
+            </h1>
         </header>
     );
 };

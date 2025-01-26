@@ -24,3 +24,36 @@ export const fetchAddTask = createAsyncThunk('task/fetchAddTask', async (newTask
         console.error(error);
     }
 })
+
+export const fetchChangeTaskStatus = createAsyncThunk('task/fetch/changeTaskStatus', async (updatedTask) => {
+    try {
+        const response = await axios.put(url + updatedTask.id, updatedTask)
+        console.log("Задача обновлена", response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+})
+
+export const fetchDeleteTask = createAsyncThunk('task/fetchDeleteTask', async (task) => {
+    try {
+        const response = await axios.delete(url + task.id)
+        console.log("Задача удалена", response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+})
+
+export const fetchEditTask = createAsyncThunk('task/fetchEditTask', async (task) => {
+    try {
+        const response = await axios.put(url + task.id, task)
+        console.log("Задача редактирована", response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+})

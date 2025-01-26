@@ -33,6 +33,7 @@ const TaskList = ({ tasks, filter }: ITaskList) => {
                     <TaskItem
                         key={task.id}
                         task={task}
+                        tasks={tasks}
                     />
                 ))}
             </ul>
