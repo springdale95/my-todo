@@ -1,12 +1,10 @@
-import { ITask } from '../../types/types.ts';
-import axios from 'axios';
 
 interface ITaskListDoneButton {
-    tasks: ITask[];
+
     taskListButtonName: string;
 }
 
-const TaskListDoneButton = ({ tasks, taskListButtonName }: ITaskListDoneButton) => {
+const TaskListDoneButton = ({ taskListButtonName }: ITaskListDoneButton) => {
     // const allDone = async () => {
     //     if (confirm('Вы действительно хотите выполнить все задачи?')) {
     //         for (const task of tasks) {

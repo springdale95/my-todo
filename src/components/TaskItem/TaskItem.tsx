@@ -1,15 +1,14 @@
 import './TaskItem.css';
 import { ITask } from '../../types/types.ts';
 import { useState } from 'react';
-import TaskItemEdit from '../TaskItemEdit/TaskItemEdit.tsx';
+import TaskItemEditForm from '../TaskItemEditForm/TaskItemEditForm.tsx';
 import TaskItemView from '../TaskItemView/TaskItemView.tsx';
 
 interface ITaskItem {
     task: ITask;
-    tasks: ITask[]
 }
 
-const TaskItem = ({ task, tasks }: ITaskItem) => {
+const TaskItem = ({ task }: ITaskItem) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditToggle = () => {
@@ -17,21 +16,11 @@ const TaskItem = ({ task, tasks }: ITaskItem) => {
     };
 
     return (
-        <li
-            className={`task-item ${task.status ? 'done' : ''}`}
-        >
+        <li className={`task-item ${task.status ? 'done' : ''}`}>
             {!isEditing ?
-                <TaskItemView
-                    task={task}
-                    handleEditToggle={handleEditToggle}
-                />
+                <TaskItemView task={task} handleEditToggle={handleEditToggle} />
             :
-            <TaskItemEdit
-                task={task}
-                tasks={tasks}
-                setIsEditing={setIsEditing}
-                handleEditToggle={handleEditToggle}
-            />
+            <TaskItemEditForm task={task} setIsEditing={setIsEditing} handleEditToggle={handleEditToggle} />
             }
         </li>
     );

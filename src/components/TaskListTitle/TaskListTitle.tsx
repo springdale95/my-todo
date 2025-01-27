@@ -1,12 +1,13 @@
-import { ITask } from '../../types/types.ts';
 import './TaskListTitle.css';
+import {useSelector} from "react-redux";
+import {getTasks} from "../../store/tasks/selector.ts";
 
 interface TaskListTitle {
-    tasks: ITask[];
     filter: string;
 }
 
-const TaskListTitle = ({ tasks, filter }: TaskListTitle) => {
+const TaskListTitle = ({ filter }: TaskListTitle) => {
+    const { tasks } = useSelector(getTasks);
     let activeCounter = 0;
     let doneCounter = 0;
 
@@ -31,9 +32,7 @@ const TaskListTitle = ({ tasks, filter }: TaskListTitle) => {
     }
 
     return (
-        <h2
-            className={'task-list-title'}
-        >
+        <h2 className={'task-list-title'}>
             {tasks.length === 0
                 ? 'Задач пока нет'
                 : `${

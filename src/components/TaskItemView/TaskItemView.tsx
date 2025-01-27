@@ -14,19 +14,9 @@ const TaskItemView = ({ task, handleEditToggle }) => {
         <>
             {task.text}
             <div>
-                <TaskItemEditButton
-                    task={task}
-                    taskButtonViewName={TaskButtonsViewNames.Edit}
-                    handleEditToggle={handleEditToggle}
-                />
-                <TaskItemStatusButton
-                    task={task}
-                    taskButtonViewNames={[TaskButtonsViewNames.Done, TaskButtonsViewNames.CancelDone]}
-                />
-                <TaskItemDeleteButton
-                    task={task}
-                    taskButtonViewName={TaskButtonsViewNames.Delete}
-                />
+                <TaskItemEditButton task={task} taskButtonViewName={TaskButtonsViewNames.Edit} handleEditToggle={handleEditToggle} />
+                <TaskItemStatusButton task={task} taskButtonViewNames={[TaskButtonsViewNames.Done, TaskButtonsViewNames.CancelDone]} />
+                <TaskItemDeleteButton task={task} taskButtonViewName={TaskButtonsViewNames.Delete} />
             </div>
         </>
     );

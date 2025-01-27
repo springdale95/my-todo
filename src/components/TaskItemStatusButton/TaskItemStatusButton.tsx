@@ -19,9 +19,7 @@ const TaskItemStatusButton = ({ task, taskButtonViewNames }: ITaskItemStatusButt
     };
 
     return (
-        <button
-            onClick={changeTaskStatus}
-        >
+        <button onClick={changeTaskStatus}>
             {task.status ? taskButtonViewNames[1] : taskButtonViewNames[0]}
         </button>
     );

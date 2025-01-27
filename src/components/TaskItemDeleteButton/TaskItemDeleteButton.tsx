@@ -15,11 +15,11 @@ const TaskItemDeleteButton = ({ task, taskButtonViewName }: ITaskItemDeleteButto
         dispatch(fetchGetTasks());
     }
 
-    return <button
-        onClick={deleteTask}
-           >
-                {taskButtonViewName}
-           </button>;
+    return (
+        <button onClick={deleteTask}>
+            {taskButtonViewName}
+        </button>
+    );
 };
 
 export default TaskItemDeleteButton;

@@ -1,11 +1,6 @@
-const TaskItemEditInput = ({ editedText, handleChange, handleKeyPress }) => {
+const TaskItemEditInput = ({ editedText, handleChange }) => {
     return (
-        <input
-            type="text"
-            value={editedText}
-            onChange={handleChange}
-            onKeyDown={handleKeyPress}
-        />
+        <input type="text" value={editedText} onChange={handleChange} />
     );
 };
 

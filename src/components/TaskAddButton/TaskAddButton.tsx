@@ -8,10 +8,7 @@ enum TaskAddButtonName {
 
 const TaskAddButton = ({ addTask }: TaskAddButton) => {
     return (
-        <button
-            type="submit"
-            onClick={addTask}
-        >
+        <button type="submit" onClick={addTask}>
             {TaskAddButtonName.Add}
         </button>
     );

@@ -2,13 +2,11 @@ const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditName }) 
 
     const handleSave = () => {
         setIsEditing(false);
-        editTask()
+        editTask();
     };
 
     return (
-        <button
-            onClick={handleSave}
-        >
+        <button type="submit" onClick={handleSave}>
             {taskButtonEditName}
         </button>
     );

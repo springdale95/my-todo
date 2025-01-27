@@ -1,8 +1,9 @@
 const TaskItemEditCancelButton = ({ handleEditToggle, taskButtonEditName }) => {
 
-    return <button
-        onClick={handleEditToggle}
-           >{taskButtonEditName}</button>;
+    return (
+        <button type="submit" onClick={handleEditToggle}>
+            {taskButtonEditName}
+        </button>);
 };
 
 export default TaskItemEditCancelButton;
