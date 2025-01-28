@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import TaskInput from '../TaskInput/TaskInput.tsx';
 import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
-import {getTasks} from "../../store/tasks/selector.ts";
+import { getTasks } from "../../store/tasks/selector.ts";
 
-interface ITaskInputForm {
-    setFilter: (filter: string) => void;
-}
-
-const TaskInputForm = ({ setFilter }: ITaskInputForm) => {
+const TaskInputForm = () => {
     const [inputValue, setInputValue] = useState<string>('');
     const dispatch = useDispatch();
     const { tasks } = useSelector(getTasks);
@@ -34,7 +30,6 @@ const TaskInputForm = ({ setFilter }: ITaskInputForm) => {
         dispatch(fetchAddTask(newTask));
         dispatch(fetchGetTasks())
         setInputValue('');
-        setFilter('all');
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +41,7 @@ const TaskInputForm = ({ setFilter }: ITaskInputForm) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <TaskInput inputValue={inputValue} handleChange={handleChange} />
             <TaskAddButton addTask={addTask} />
         </form>

@@ -7,7 +7,7 @@ interface ITasksInput {
 
 const TaskInput = ({ inputValue, handleChange }: ITasksInput) => {
     return (
-        <input type="text" placeholder="Введите задачу" value={inputValue} onChange={handleChange}/>
+        <input id="add" type="text" placeholder="Введите задачу" value={inputValue} onChange={handleChange} />
     );
 };
 

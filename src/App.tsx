@@ -1,27 +1,33 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchGetTasks } from './store/tasks/fetchTasksData.ts';
 import Header from './components/Header/Header.tsx';
 import TaskInputForm from './components/TaskInputForm/TaskInputForm.tsx';
 import Filter from './components/Filter/Filter.tsx';
 import TaskList from './components/TaskList/TaskList.tsx';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
     const dispatch = useDispatch();
-    const [filter, setFilter] = useState<string>('all');
 
     useEffect(() => {
         dispatch(fetchGetTasks());
     }, [dispatch]);
 
     return (
-        <div className="app">
-            <Header />
-            <TaskInputForm setFilter={setFilter} />
-            <Filter filter={filter} setFilter={setFilter} />
-            <TaskList filter={filter} />
-        </div>
+        <Router>
+            <div className="app">
+                <Header />
+                <TaskInputForm />
+                <Filter  />
+                <Routes>
+                    <Route path="/" element={<TaskList filter="all" />} />
+                    <Route path="/active" element={<TaskList filter="active" />} />
+                    <Route path="/done" element={<TaskList filter="done" />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 

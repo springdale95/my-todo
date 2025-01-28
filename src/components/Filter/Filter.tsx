@@ -2,11 +2,8 @@ import FilterButtonAll from '../FilterButtonAll/FilterButtonAll.tsx';
 import FilterButtonActive from '../FilterButtonActive/FilterButtonActive.tsx';
 import FilterButtonDone from '../FilterButtonDone/FilterButtonDone.tsx';
 import './Filter.css';
-
-interface IFilter {
-    filter: string;
-    setFilter: (filter: string) => void;
-}
+import {Link} from "react-router-dom";
+import {useState} from "react";
 
 enum FilterButtonsNames {
     All = 'Все',
@@ -14,27 +11,32 @@ enum FilterButtonsNames {
     Done = 'Выполненные',
 }
 
-const Filter = ({ filter, setFilter }: IFilter) => {
+const Filter = () => {
+    const [filter, setFilter] = useState('all')
+
     return (
-        <div>
-            <FilterButtonAll
-                filter={filter}
-                setFilter={setFilter}
-                filterButtonName={FilterButtonsNames.All}
-            />
-
-            <FilterButtonActive
-                filter={filter}
-                setFilter={setFilter}
-                filterButtonName={FilterButtonsNames.Active}
-            />
-
-            <FilterButtonDone
-                filter={filter}
-                setFilter={setFilter}
-                filterButtonName={FilterButtonsNames.Done}
-            />
-        </div>
+        <nav>
+            <ul>
+                <li>
+                    <Link to="/">
+                        <FilterButtonAll filter={filter} setFilter={setFilter} filterButtonName={FilterButtonsNames.All}
+                        />
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/active">
+                        <FilterButtonActive filter={filter} setFilter={setFilter} filterButtonName={FilterButtonsNames.Active}
+                        />
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/done">
+                        <FilterButtonDone filter={filter} setFilter={setFilter} filterButtonName={FilterButtonsNames.Done}
+                        />
+                    </Link>
+                </li>
+            </ul>
+        </nav>
     );
 };
 

@@ -19,8 +19,8 @@ const TaskItem = ({ task }: ITaskItem) => {
         <li className={`task-item ${task.status ? 'done' : ''}`}>
             {!isEditing ?
                 <TaskItemView task={task} handleEditToggle={handleEditToggle} />
-            :
-            <TaskItemEditForm task={task} setIsEditing={setIsEditing} handleEditToggle={handleEditToggle} />
+                :
+                <TaskItemEditForm task={task} setIsEditing={setIsEditing} handleEditToggle={handleEditToggle} />
             }
         </li>
     );
