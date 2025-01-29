@@ -25,9 +25,9 @@ export const fetchAddTask = createAsyncThunk('task/fetchAddTask', async (newTask
     }
 })
 
-export const fetchChangeTaskStatus = createAsyncThunk('task/fetch/changeTaskStatus', async (updatedTask) => {
+export const fetchChangeTaskStatus = createAsyncThunk('task/fetch/changeTaskStatus', async (task) => {
     try {
-        const response = await axios.put(url + updatedTask.id, updatedTask)
+        const response = await axios.put(url + task.id, task)
         console.log("Задача обновлена", response.data);
         return response.data;
     }

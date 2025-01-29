@@ -4,7 +4,7 @@ import TaskItemEditCancelButton from '../TaskItemEditCancelButton/TaskItemEditCa
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { fetchEditTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
-import {getTasks} from "../../store/tasks/selector.ts";
+import { selectGetTasks } from "../../store/tasks/selector.ts";
 
 
 enum TaskButtonsEditNames {
@@ -15,7 +15,7 @@ enum TaskButtonsEditNames {
 const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
     const [editedText, setEditedText] = useState(task.text);
     const dispatch = useDispatch();
-    const { tasks } = useSelector(getTasks);
+    const { tasks } = useSelector( selectGetTasks );
     const editTask = () => {
         if (editedText.trim() === '') {
             alert('Введите Вашу задачу');

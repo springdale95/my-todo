@@ -1,13 +1,13 @@
 import './TaskListTitle.css';
-import {useSelector} from "react-redux";
-import {getTasks} from "../../store/tasks/selector.ts";
+import { useSelector } from "react-redux";
+import { selectGetTasks } from "../../store/tasks/selector.ts";
 
 interface TaskListTitle {
     filter: string;
 }
 
 const TaskListTitle = ({ filter }: TaskListTitle) => {
-    const { tasks } = useSelector(getTasks);
+    const { tasks } = useSelector(selectGetTasks);
     let activeCounter = 0;
     let doneCounter = 0;
 

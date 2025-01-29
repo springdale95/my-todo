@@ -1,15 +1,15 @@
 import TaskItem from '../TaskItem/TaskItem.tsx';
 import TaskListTitle from '../TaskListTitle/TaskListTitle.tsx';
 import './TaskList.css';
-import {useSelector} from "react-redux";
-import {getTasks} from "../../store/tasks/selector.ts";
+import { useSelector } from "react-redux";
+import { selectGetTasks } from "../../store/tasks/selector.ts";
 
 interface ITaskList {
     filter: string;
 }
 
 const TaskList = ({ filter }: ITaskList) => {
-    const { tasks } = useSelector(getTasks);
+    const { tasks } = useSelector(selectGetTasks);
 
     const filteredTaskList = tasks.filter((task) =>
         filter === 'active' ? !task.status : filter === 'done' ? task.status : true,

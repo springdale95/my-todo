@@ -15,7 +15,6 @@ const TaskItemStatusButton = ({ task, taskButtonViewNames }: ITaskItemStatusButt
             status: !task.status
         };
         dispatch(fetchChangeTaskStatus(updatedTask));
-        dispatch(fetchGetTasks());
     };
 
     return (

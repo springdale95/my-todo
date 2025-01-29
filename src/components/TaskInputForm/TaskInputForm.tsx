@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import TaskInput from '../TaskInput/TaskInput.tsx';
 import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAddTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
-import { getTasks } from "../../store/tasks/selector.ts";
+import { fetchAddTask } from '../../store/tasks/fetchTasksData.ts';
+import { selectGetTasks } from "../../store/tasks/selector.ts";
 
 const TaskInputForm = () => {
     const [inputValue, setInputValue] = useState<string>('');
     const dispatch = useDispatch();
-    const { tasks } = useSelector(getTasks);
+    const { tasks } = useSelector(selectGetTasks);
 
     const addTask = () => {
         if (inputValue.trim() === '') {
@@ -28,7 +28,6 @@ const TaskInputForm = () => {
         }
 
         dispatch(fetchAddTask(newTask));
-        dispatch(fetchGetTasks())
         setInputValue('');
     };
 

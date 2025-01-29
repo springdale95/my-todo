@@ -12,7 +12,6 @@ const TaskItemDeleteButton = ({ task, taskButtonViewName }: ITaskItemDeleteButto
 
     const deleteTask = () => {
         dispatch(fetchDeleteTask(task));
-        dispatch(fetchGetTasks());
     }
 
     return (
