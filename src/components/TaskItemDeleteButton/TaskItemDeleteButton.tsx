@@ -1,5 +1,5 @@
 import { ITask } from '../../types/types.ts';
-import { fetchDeleteTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
+import { fetchDeleteTask, fetchGetTasks } from '../../store/tasks/restAPI.ts';
 import { useDispatch } from 'react-redux';
 
 interface ITaskItemDeleteButton {

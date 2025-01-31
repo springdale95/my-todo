@@ -5,10 +5,15 @@ import {
     fetchDeleteTask,
     fetchEditTask,
     fetchGetTasks,
-} from './fetchTasksData.ts';
-import { ITask } from '../../types/types.ts';
+} from './restAPI.ts';
 
-interface TasksState {
+type ITask = {
+    id: string;
+    text: string;
+    status: boolean;
+}
+
+type TasksState = {
     tasks: ITask[];
     loading: boolean;
     error: string | null;
@@ -20,14 +25,12 @@ const initialState: TasksState = {
     error: null,
 }
 
-const getTasksSlice = createSlice({
-    name: "getTasks",
+const tasksSlice = createSlice({
+    name: "tasks",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-
-            // Первый рендер
             .addCase(fetchGetTasks.pending, (state) => {
                 state.loading = true;
             })
@@ -39,8 +42,6 @@ const getTasksSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
-
-            // Добавление задачи
             .addCase(fetchAddTask.pending, (state) => {
                 state.loading = true;
             })
@@ -52,8 +53,6 @@ const getTasksSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
-
-            // Изменение статуса задачи
             .addCase(fetchChangeTaskStatus.pending, (state) => {
                 state.loading = true;
             })
@@ -67,8 +66,6 @@ const getTasksSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
-
-            // Удаление задачи
             .addCase(fetchDeleteTask.pending, (state) => {
                 state.loading = true;
             })
@@ -81,7 +78,6 @@ const getTasksSlice = createSlice({
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
 
-            // Изменение задачи
             .addCase(fetchEditTask.pending, (state) => {
                 state.loading = true;
             })
@@ -98,4 +94,5 @@ const getTasksSlice = createSlice({
     },
 })
 
-export const getTasksReducer = getTasksSlice.reducer;
+export const getTasksReducer = tasksSlice.reducer;
+

@@ -2,7 +2,7 @@ import TaskItem from '../TaskItem/TaskItem.tsx';
 import TaskListTitle from '../TaskListTitle/TaskListTitle.tsx';
 import './TaskList.css';
 import { useSelector } from "react-redux";
-import { selectGetTasks } from "../../store/tasks/selector.ts";
+import { selectGetTasks } from "../../store/tasks/selectors.ts";
 
 interface ITaskList {
     filter: string;
