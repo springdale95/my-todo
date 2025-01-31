@@ -3,7 +3,6 @@ import FilterButtonActive from '../FilterButtonActive/FilterButtonActive.tsx';
 import FilterButtonDone from '../FilterButtonDone/FilterButtonDone.tsx';
 import './Filter.css';
 import {Link} from "react-router-dom";
-import {useState} from "react";
 
 enum FilterButtonsNames {
     All = 'Все',
@@ -11,8 +10,7 @@ enum FilterButtonsNames {
     Done = 'Выполненные',
 }
 
-const Filter = () => {
-    const [filter, setFilter] = useState('all')
+const Filter = ({filter, setFilter}) => {
 
     return (
         <nav>

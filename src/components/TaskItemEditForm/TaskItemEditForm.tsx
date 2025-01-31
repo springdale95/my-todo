@@ -3,8 +3,9 @@ import TaskItemEditSaveButton from '../TaskItemEditSaveButton/TaskItemEditSaveBu
 import TaskItemEditCancelButton from '../TaskItemEditCancelButton/TaskItemEditCancelButton.tsx';
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { fetchEditTask, fetchGetTasks } from '../../store/tasks/restAPI.ts';
+import { fetchEditTask } from '../../store/tasks/restAPI.ts';
 import { selectGetTasks } from "../../store/tasks/selectors.ts";
+import { showAndHideNotification } from '../../store/notifications/thunk.ts';
 
 
 enum TaskButtonsEditNames {
@@ -15,16 +16,22 @@ enum TaskButtonsEditNames {
 const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
     const [editedText, setEditedText] = useState(task.text);
     const dispatch = useDispatch();
-    const { tasks } = useSelector( selectGetTasks );
+    const { tasks } = useSelector(selectGetTasks);
     const editTask = () => {
         if (editedText.trim() === '') {
-            alert('Введите Вашу задачу');
+            const showNotificationAction = { show: true, notificationText: 'Введите Вашу задачу', type: 'error'};
+            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
+            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
+            setIsEditing(true);
             setEditedText(task.text);
             return;
         }
 
         if (tasks.find((item) => item.text === editedText)) {
-            alert('Задача уже введена');
+            const showNotificationAction = { show: true, notificationText: 'Задача уже введена', type: 'error'};
+            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
+            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
+            setIsEditing(true);
             setEditedText(task.text);
             return;
         }
@@ -35,13 +42,12 @@ const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
         }
 
         dispatch(fetchEditTask(editedTask));
-        dispatch(fetchGetTasks());
         setIsEditing(false);
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditedText(event.target.value)
-    }
+    };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

@@ -7,13 +7,13 @@ import {
     fetchGetTasks,
 } from './restAPI.ts';
 
-interface ITask {
+type ITask = {
     id: string;
     text: string;
     status: boolean;
 }
 
-interface TasksState {
+type TasksState = {
     tasks: ITask[];
     loading: boolean;
     error: string | null;
@@ -93,9 +93,6 @@ const tasksSlice = createSlice({
             })
     },
 })
-
-
-
 
 export const getTasksReducer = tasksSlice.reducer;
 

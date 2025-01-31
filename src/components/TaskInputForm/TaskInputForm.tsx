@@ -4,6 +4,7 @@ import TaskAddButton from '../TaskAddButton/TaskAddButton.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTask } from '../../store/tasks/restAPI.ts';
 import { selectGetTasks } from "../../store/tasks/selectors.ts";
+import { showAndHideNotification } from './../../store/notifications/thunk.ts'
 
 const TaskInputForm = () => {
     const [inputValue, setInputValue] = useState<string>('');
@@ -12,14 +13,16 @@ const TaskInputForm = () => {
 
     const addTask = () => {
         if (inputValue.trim() === '') {
-            alert('Введите Вашу задачу');
-            return;
+            const showNotificationAction = { show: true, notificationText: 'Введите Вашу задачу', type: 'error'};
+            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
+            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
         }
-
+        
         if (tasks.find((item) => item.text === inputValue)) {
-            alert('Задача уже введена');
             setInputValue('');
-            return;
+            const showNotificationAction = { show: true, notificationText: 'Задача уже введена', type: 'error'};
+            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
+            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
         }
 
         const newTask = {
