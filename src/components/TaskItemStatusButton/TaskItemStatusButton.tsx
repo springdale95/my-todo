@@ -1,6 +1,6 @@
 import { ITask } from '../../types/types.ts';
 import { useDispatch } from 'react-redux';
-import { fetchChangeTaskStatus, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
+import { fetchChangeTaskStatus, fetchGetTasks } from '../../store/tasks/restAPI.ts';
 
 interface ITaskItemStatusButton {
     task: ITask;

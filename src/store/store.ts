@@ -3,7 +3,6 @@ import { getTasksReducer } from './tasks/tasksReducer.ts';
 
 export const store = configureStore({
     reducer: {
-        tasks: getTasksReducer,
-        loading: getTasksReducer,
+        tasksResponse: getTasksReducer,
     },
 })

@@ -1,9 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'https://678bc1461a6b89b27a2b563b.mockapi.io/api/v1/tasks/';
+const HTTPS = "https://";
+const id = '678bc1461a6b89b27a2b563b.';
+const baseURL = 'mockapi.io/';
+const path = 'api/v1/tasks/'
+const url = HTTPS + id + baseURL + path;
 
-export const fetchGetTasks = createAsyncThunk('tasks/fetchGetTasks', async () => {
+export const fetchGetTasks = createAsyncThunk('get/tasks', async () => {
     try {
         const response = await axios.get(url)
         console.log("Первый рендер", response.data);
@@ -14,7 +18,7 @@ export const fetchGetTasks = createAsyncThunk('tasks/fetchGetTasks', async () =>
     }
 })
 
-export const fetchAddTask = createAsyncThunk('task/fetchAddTask', async (newTask) => {
+export const fetchAddTask = createAsyncThunk('post/task', async (newTask) => {
     try {
         const response = await axios.post(url, newTask)
         console.log("Задача добавлена", response.data);
@@ -25,7 +29,7 @@ export const fetchAddTask = createAsyncThunk('task/fetchAddTask', async (newTask
     }
 })
 
-export const fetchChangeTaskStatus = createAsyncThunk('task/fetch/changeTaskStatus', async (task) => {
+export const fetchChangeTaskStatus = createAsyncThunk('put/taskStatus', async (task) => {
     try {
         const response = await axios.put(url + task.id, task)
         console.log("Задача обновлена", response.data);
@@ -36,7 +40,7 @@ export const fetchChangeTaskStatus = createAsyncThunk('task/fetch/changeTaskStat
     }
 })
 
-export const fetchDeleteTask = createAsyncThunk('task/fetchDeleteTask', async (task) => {
+export const fetchDeleteTask = createAsyncThunk('delete/task', async (task) => {
     try {
         const response = await axios.delete(url + task.id)
         console.log("Задача удалена", response.data);
@@ -47,7 +51,7 @@ export const fetchDeleteTask = createAsyncThunk('task/fetchDeleteTask', async (t
     }
 })
 
-export const fetchEditTask = createAsyncThunk('task/fetchEditTask', async (task) => {
+export const fetchEditTask = createAsyncThunk('put/taskText', async (task) => {
     try {
         const response = await axios.put(url + task.id, task)
         console.log("Задача редактирована", response.data);

@@ -1,6 +1,6 @@
 import './TaskListTitle.css';
 import { useSelector } from "react-redux";
-import { selectGetTasks } from "../../store/tasks/selector.ts";
+import { selectGetTasks } from "../../store/tasks/selectors.ts";
 
 interface TaskListTitle {
     filter: string;

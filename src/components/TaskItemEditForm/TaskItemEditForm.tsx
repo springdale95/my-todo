@@ -3,8 +3,8 @@ import TaskItemEditSaveButton from '../TaskItemEditSaveButton/TaskItemEditSaveBu
 import TaskItemEditCancelButton from '../TaskItemEditCancelButton/TaskItemEditCancelButton.tsx';
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { fetchEditTask, fetchGetTasks } from '../../store/tasks/fetchTasksData.ts';
-import { selectGetTasks } from "../../store/tasks/selector.ts";
+import { fetchEditTask, fetchGetTasks } from '../../store/tasks/restAPI.ts';
+import { selectGetTasks } from "../../store/tasks/selectors.ts";
 
 
 enum TaskButtonsEditNames {
