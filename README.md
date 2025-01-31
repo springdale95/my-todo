@@ -5,8 +5,8 @@
 - Typescript
 - Использование внешних API: mockAPI
 - Использование препроцессора SCSS (модульные стили style.module.scss) (work in progress)
-- Роутинг React Router Dom (work in progress)
-- Стейт-менеджеры Redux, Redux-toolkit (work in progress)
+- Роутинг React Router Dom
+- Стейт-менеджеры Redux, Redux-toolkit
 - Работа с API с помощью клиента Axios (или встроенный fetch) - все данные должны быть типизированы (типизация work in progress)
 - Деплой приложения (gh-pages, vercel, heroku.com, fly.io) (work in progress)
 - Адаптивность - приложение должно корректно выглядеть на всех типах устройств (mobile, tablet, desktop) (work in progress)
