@@ -1,22 +1,16 @@
-import './App.css';
+import './App.nodule.scss';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetTasks } from './store/tasks/restAPI.ts';
-import Header from './components/Header/Header.tsx';
-import TaskInputForm from './components/TaskInputForm/TaskInputForm.tsx';
-import Filter from './components/Filter/Filter.tsx';
-import TaskList from './components/TaskList/TaskList.tsx';
+import { Header, TaskInputForm, Filter, Notification, Preloader, TaskList } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Preloader from "./components/Preloader/Preloader.tsx";
 import { selectLoading } from "./store/tasks/selectors.ts";
 import { selectShowNotification } from './store/notifications/selectors.ts';
-import Notification from './components/Notification/Notification.tsx';
 
 function App() {
     const dispatch = useDispatch();
     const loading = useSelector(selectLoading);
     const notification = useSelector(selectShowNotification);
-    const [filter, setFilter] = useState('all');
 
     useEffect(() => {
         dispatch(fetchGetTasks());
@@ -28,12 +22,12 @@ function App() {
                 { notification ? <Notification /> : null }
                 <Header />
                 <TaskInputForm />
-                <Filter filter={filter} setFilter={setFilter} />
+                <Filter />
                 { loading ? <Preloader /> :
                 <Routes>
-                    <Route path="/" element={<TaskList filter={filter} />} />
-                    <Route path="/active" element={<TaskList filter={filter} />} />
-                    <Route path="/done" element={<TaskList filter={filter} />} />
+                    <Route path="/" element={<TaskList />} />
+                    <Route path="/active" element={<TaskList />} />
+                    <Route path="/done" element={<TaskList />} />
                 </Routes>
                 }
             </div>

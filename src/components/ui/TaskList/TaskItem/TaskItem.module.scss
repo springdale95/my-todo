@@ -1,0 +1,10 @@
+.task_item__done {
+    text-decoration: underline;
+}
+
+.task_item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    column-gap: 50px;
+}
