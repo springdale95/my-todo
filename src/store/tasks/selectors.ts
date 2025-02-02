@@ -1,2 +1,4 @@
-export const selectGetTasks = (state) => state.tasksResponse;
-export const selectLoading = (state) => state.tasksResponse.loading;
+import { RootState } from '../store.ts';
+
+export const selectGetTasks = (state: RootState) => state.tasksResponse.tasks;
+export const selectLoading = (state: RootState) => state.tasksResponse.loading;
