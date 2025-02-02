@@ -1,6 +1,7 @@
-import './App.nodule.scss';
-import { useEffect, useState } from 'react';
+import styles from './App.module.scss';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './store/store';
 import { fetchGetTasks } from './store/tasks/restAPI.ts';
 import { Header, TaskInputForm, Filter, Notification, Preloader, TaskList } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -8,7 +9,7 @@ import { selectLoading } from "./store/tasks/selectors.ts";
 import { selectShowNotification } from './store/notifications/selectors.ts';
 
 function App() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const loading = useSelector(selectLoading);
     const notification = useSelector(selectShowNotification);
 
@@ -18,7 +19,7 @@ function App() {
 
     return (
         <Router>
-            <div className="app">
+            <div className={styles.app}>
                 { notification ? <Notification /> : null }
                 <Header />
                 <TaskInputForm />

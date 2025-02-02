@@ -14,7 +14,7 @@ enum TaskButtonsEditNames {
 export const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
     const [editedText, setEditedText] = useState(task.text);
     const dispatch = useDispatch();
-    const { tasks } = useSelector(selectGetTasks);
+    const tasks = useSelector(selectGetTasks);
     const editTask = () => {
         if (editedText.trim() === '') {
             const showNotificationAction = { show: true, notificationText: 'Введите Вашу задачу', type: 'error'};
