@@ -4,11 +4,11 @@
 - Vite
 - Typescript
 - Использование внешних API: mockAPI
-- Использование препроцессора SCSS (модульные стили style.module.scss) (work in progress)
+- Использование препроцессора SCSS (модульные стили style.module.scss)
 - Роутинг React Router Dom
 - Стейт-менеджеры Redux, Redux-toolkit
-- Работа с API с помощью клиента Axios (или встроенный fetch) - все данные должны быть типизированы (типизация work in progress)
-- Деплой приложения (gh-pages, vercel, heroku.com, fly.io) (work in progress)
+- Работа с API с помощью клиента Axios (или встроенный fetch) - все данные должны быть типизированы
+- Деплой приложения (gh-pages, vercel, heroku.com, fly.io)
 - Адаптивность - приложение должно корректно выглядеть на всех типах устройств (mobile, tablet, desktop) (work in progress)
 
 ВАЖНО: Использование сторонних библиотек - запрещено (только те, что описаны выше)
