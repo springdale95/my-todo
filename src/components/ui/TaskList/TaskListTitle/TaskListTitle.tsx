@@ -10,7 +10,7 @@ export const TaskListTitle = () => {
     let activeCounter = 0;
     let doneCounter = 0;
 
-    const counter = () => {
+    function counter () {
         tasks.forEach((task) => (task.status ? doneCounter++ : activeCounter++));
     };
 
@@ -24,11 +24,11 @@ export const TaskListTitle = () => {
         } else {
             return 'задач';
         }
-    }
+    };
 
     function getEndStatusWord(count: number) {
         return count % 10 === 1 && count % 100 !== 11 ? 'ая' : 'ых';
-    }
+    };
 
     return (
         <h2 className={styles.title}>

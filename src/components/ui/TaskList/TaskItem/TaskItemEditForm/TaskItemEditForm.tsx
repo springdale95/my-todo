@@ -5,30 +5,33 @@ import { fetchEditTask } from '../../../../../store/tasks/restAPI.ts';
 import { selectGetTasks } from "../../../../../store/tasks/selectors.ts";
 import { showAndHideNotification } from '../../../../../store/notifications/thunk.ts';
 import styles from './TaskItemEditForm.module.scss';
+import { AppDispatch } from '../../../../../store/store.ts';
+import { NotificationState } from '../../../../../store/notifications/notificationsReducer.ts';
+import { ITask } from '../../../../../store/tasks/tasksReducer.ts';
 
 enum TaskButtonsEditNames {
     Save = 'Сохранить',
     Cancel = 'Отмена',
 }
 
-export const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
+export const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }: { task: ITask, setIsEditing: (isEditing: boolean) => void, handleEditToggle: () => void }) => {
     const [editedText, setEditedText] = useState(task.text);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const tasks = useSelector(selectGetTasks);
     const editTask = () => {
         if (editedText.trim() === '') {
-            const showNotificationAction = { show: true, notificationText: 'Введите Вашу задачу', type: 'error'};
-            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
-            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
+            const showNotificationAction: NotificationState = { show: true, notificationText: 'Введите Вашу задачу', type: 'error'};
+            const hideNotificationAction: NotificationState = { show: false, notificationText: '', type: 'panding'};
+            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction));
             setIsEditing(true);
             setEditedText(task.text);
             return;
         }
 
         if (tasks.find((item) => item.text === editedText)) {
-            const showNotificationAction = { show: true, notificationText: 'Задача уже введена', type: 'error'};
-            const hideNotificationAction = { show: false, notificationText: '', type: 'panding'};
-            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
+            const showNotificationAction: NotificationState = { show: true, notificationText: 'Задача уже введена', type: 'error'};
+            const hideNotificationAction: NotificationState = { show: false, notificationText: '', type: 'panding'};
+            dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction));
             setIsEditing(true);
             setEditedText(task.text);
             return;
@@ -37,18 +40,19 @@ export const TaskItemEditForm = ({ task, setIsEditing, handleEditToggle  }) => {
         const editedTask = {
             ...task,
             text: editedText.trim(),
-        }
+        };
 
         dispatch(fetchEditTask(editedTask));
         setIsEditing(false);
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEditedText(event.target.value)
+        setEditedText(event.target.value);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        editTask();
     };
 
     return (

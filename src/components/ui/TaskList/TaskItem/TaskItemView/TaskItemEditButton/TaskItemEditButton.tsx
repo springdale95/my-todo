@@ -1,4 +1,4 @@
-export const TaskItemEditButton = ({ taskButtonViewName, handleEditToggle }) => {
+export const TaskItemEditButton = ({ taskButtonViewName, handleEditToggle }: { taskButtonViewName: string, handleEditToggle: () => void }) => {
     return (
         <button onClick={handleEditToggle}>
             {taskButtonViewName}

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { TaskItemView, TaskItemEditForm } from '../../../../components';
 import styles from './TaskItem.module.scss';
+import { ITask } from '../../../../store/tasks/tasksReducer.ts';
 
-export const TaskItem = ({ task }) => {
+export const TaskItem = ({ task }: { task: ITask }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditToggle = () => {

@@ -7,7 +7,7 @@ import {
     fetchGetTasks,
 } from './restAPI.ts';
 
-type ITask = {
+export type ITask = {
     id: string;
     text: string;
     status: boolean;

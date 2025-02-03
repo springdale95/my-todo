@@ -1,4 +1,4 @@
-export const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditName }) => {
+export const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditName }: { setIsEditing: (isEditing: boolean) => void, editTask: () => void, taskButtonEditName: string }) => {
 
     const handleSave = () => {
         setIsEditing(false);
@@ -6,7 +6,7 @@ export const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditN
     };
 
     return (
-        <button type="submit" onClick={handleSave}>
+        <button type="button" onClick={handleSave}>
             {taskButtonEditName}
         </button>
     );

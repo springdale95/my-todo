@@ -1,7 +1,7 @@
-export const TaskItemEditCancelButton = ({ handleEditToggle, taskButtonEditName }) => {
+export const TaskItemEditCancelButton = ({ handleEditToggle, taskButtonEditName }: { handleEditToggle: () => void, taskButtonEditName: string }) => {
 
     return (
-        <button type="submit" onClick={handleEditToggle}>
+        <button type="button" onClick={handleEditToggle}>
             {taskButtonEditName}
         </button>);
 };

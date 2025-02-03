@@ -1,14 +1,15 @@
 import { ITask } from '../../types/types.ts';
-import { fetchDeleteTask, fetchGetTasks } from '../../../../../../store/tasks/restAPI.ts';
+import { fetchDeleteTask } from '../../../../../../store/tasks/restAPI.ts';
 import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../../../store/store.ts';
 
 interface ITaskItemDeleteButton {
     task: ITask;
-    taskButtonName: string;
+    taskButtonViewName: string;
 }
 
 export const TaskItemDeleteButton = ({ task, taskButtonViewName }: ITaskItemDeleteButton) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const deleteTask = () => {
         dispatch(fetchDeleteTask(task));

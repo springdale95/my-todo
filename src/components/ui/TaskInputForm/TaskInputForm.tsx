@@ -18,20 +18,20 @@ export const TaskInputForm = () => {
         if (inputValue.trim() === '') {
             const showNotificationAction: NotificationState = { show: true, notificationText: 'Введите Вашу задачу', type: 'panding' };
             const hideNotificationAction: NotificationState = { show: false, notificationText: '', type: 'panding' };
-            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
+            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction));
         }
         
         if (tasks.find((item) => item.text === inputValue)) {
             setInputValue('');
             const showNotificationAction: NotificationState = { show: true, notificationText: 'Задача уже введена', type: 'error'};
             const hideNotificationAction: NotificationState = { show: false, notificationText: '', type: 'panding'};
-            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction))
-
+            return dispatch(showAndHideNotification(showNotificationAction, hideNotificationAction));
         }
 
         const newTask = {
+            id: `${tasks.length + 1}`,
             text: inputValue.trim(),
-            status: false
+            status: false,
         }
 
         dispatch(fetchAddTask(newTask));

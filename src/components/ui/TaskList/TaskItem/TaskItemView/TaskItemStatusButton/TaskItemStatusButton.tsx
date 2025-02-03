@@ -1,6 +1,8 @@
-import { ITask } from '../../types/types.ts';
+import { ITask } from '../../../../../../store/tasks/tasksReducer.ts';
 import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../../../store/store';
 import { fetchChangeTaskStatus } from '../../../../../../store/tasks/restAPI.ts';
+
 
 interface ITaskItemStatusButton {
     task: ITask;
@@ -8,10 +10,11 @@ interface ITaskItemStatusButton {
 }
 
 export const TaskItemStatusButton = ({ task, taskButtonViewNames }: ITaskItemStatusButton) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const changeTaskStatus =  () => {
         const updatedTask = {
             id: task.id,
+            text: task.text,
             status: !task.status
         };
         dispatch(fetchChangeTaskStatus(updatedTask));

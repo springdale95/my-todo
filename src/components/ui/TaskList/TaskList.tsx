@@ -8,7 +8,6 @@ export const TaskList = () => {
     const tasks = useSelector(selectGetTasks);
     const filter = useSelector(selectFilter);
 
-
     const filteredTaskList = tasks.filter((task) =>
         filter.type === 'active' ? !task.status : filter.type === 'done' ? task.status : true,
     );
