@@ -1,7 +1,7 @@
 import { TaskListTitle, TaskItem } from './../../../components';
 import { useSelector } from "react-redux";
 import { selectGetTasks } from "../../../store/tasks/selectors.ts";
-import styles from './TaskList.module.scss'
+import styles from '../../../App.module.scss';
 import { selectFilter } from '../../../store/filter/selector.ts';
 
 export const TaskList = () => {
@@ -13,11 +13,11 @@ export const TaskList = () => {
     );
 
     return (
-        <div className={styles.div}>
+        <div className={styles.tasks}>
             <TaskListTitle />
-            <ul>
+            <ul className={styles.list}>
                 {filteredTaskList.map((task) => (
-                    <TaskItem key={task.id} task={task}/>
+                    <TaskItem key={task.id} task={task} />
                 ))}
             </ul>
         </div>

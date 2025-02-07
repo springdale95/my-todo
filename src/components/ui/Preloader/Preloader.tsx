@@ -1,8 +1,8 @@
-import preloader from '../../../assets/preloader.gif'
-import styles from './Preloader.module.scss'
+import preloader from '../../../assets/preloader.gif';
+import styles from '../../../App.module.scss';
 
 export const Preloader = () => {
     return (
-        <img className={styles.img} src={preloader} alt={'Preloader'}/>
+        <img className={styles.preloader} src={preloader} alt={'Preloader'} />
     );
 };

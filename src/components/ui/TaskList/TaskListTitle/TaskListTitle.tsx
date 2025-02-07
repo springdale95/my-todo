@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectGetTasks } from "../../../../store/tasks/selectors.ts";
-import styles from './TaskListTitle.module.scss'
+import styles from '../../../../App.module.scss';
 import { selectFilter } from '../../../../store/filter/selector.ts';
 
 export const TaskListTitle = () => {
@@ -10,7 +10,7 @@ export const TaskListTitle = () => {
     let activeCounter = 0;
     let doneCounter = 0;
 
-    function counter () {
+    function counter() {
         tasks.forEach((task) => (task.status ? doneCounter++ : activeCounter++));
     };
 
@@ -31,16 +31,16 @@ export const TaskListTitle = () => {
     };
 
     return (
-        <h2 className={styles.title}>
+        <h2 className={styles.tasks_title}>
             {tasks.length === 0
                 ? 'Задач пока нет'
-                : `${
-                      filter.type === 'all'
-                          ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
-                          : filter.type === 'active'
-                            ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
-                            : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
-                  }
+                : `${filter.type === 'all'
+
+                    ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
+                    : filter.type === 'active'
+                        ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
+                        : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
+                }
             `}
         </h2>
     );

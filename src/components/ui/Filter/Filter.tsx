@@ -1,6 +1,6 @@
 import { FilterButtonAll, FilterButtonActive, FilterButtonDone } from '../../../components';
-import styles from './Filter.module.scss'
-import {Link} from "react-router-dom";
+import styles from '../../../App.module.scss';
+import { Link } from "react-router-dom";
 
 enum FilterButtonsNames {
     All = 'Все',
@@ -11,26 +11,20 @@ enum FilterButtonsNames {
 export const Filter = () => {
 
     return (
-        <nav>
-            <ul className={styles.ul}>
-                <li>
-                    <Link to="/">
-                        <FilterButtonAll filterButtonName={FilterButtonsNames.All}
-                        />
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/active">
-                        <FilterButtonActive filterButtonName={FilterButtonsNames.Active}
-                        />
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/done">
-                        <FilterButtonDone filterButtonName={FilterButtonsNames.Done}
-                        />
-                    </Link>
-                </li>
+        <nav className={styles.nav}>
+            <ul className={styles.filter_list}>
+                <Link to="/">
+                    <FilterButtonAll filterButtonName={FilterButtonsNames.All} />
+                </Link>
+
+                <Link to="/active">
+                    <FilterButtonActive filterButtonName={FilterButtonsNames.Active} />
+                </Link>
+
+                <Link to="/done">
+                    <FilterButtonDone filterButtonName={FilterButtonsNames.Done}
+                    />
+                </Link>
             </ul>
         </nav>
     );
