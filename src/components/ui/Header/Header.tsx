@@ -1,4 +1,4 @@
-import styles from './Header.module.scss'
+import styles from './../../../App.module.scss'
 
 export const Header = () => {
     const title = 'my-todo';

@@ -1,3 +1,5 @@
+import styles from '../../../../../../App.module.scss';
+
 export const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditName }: { setIsEditing: (isEditing: boolean) => void, editTask: () => void, taskButtonEditName: string }) => {
 
     const handleSave = () => {
@@ -6,7 +8,7 @@ export const TaskItemEditSaveButton = ({ setIsEditing, editTask, taskButtonEditN
     };
 
     return (
-        <button type="button" onClick={handleSave}>
+        <button className={`${styles.btn_reset} ${styles.button}`} type="button" onClick={handleSave}>
             {taskButtonEditName}
         </button>
     );

@@ -1,4 +1,4 @@
-import styles from './FilterButtonAll.module.scss'
+import styles from '../../../../App.module.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFilter } from '../../../../store/filter/selector.ts';
 import { allFilterReducer } from '../../../../store/filter/filterReducer.ts';
@@ -8,17 +8,20 @@ type FilterButtonAllProps = {
 }
 
 export const FilterButtonAll = ({ filterButtonName }: FilterButtonAllProps) => {
-    const filter= useSelector(selectFilter);
+    const filter = useSelector(selectFilter);
     const dispatch = useDispatch();
 
     const dispatchAction = () => {
         return dispatch(allFilterReducer({ type: 'all' }));
     }
+
     return (
-        <button
-            className={(filter.type === 'all') ? styles.filter_button__active : styles.filter_button}
-            onClick={dispatchAction}>
-            {filterButtonName}
-        </button>
+        <li className={styles.list_item}>
+            <button
+                className={`${styles.btn_reset} ${styles.button} ${filter.type === 'all' ? styles.filter_button__active : null}`}
+                onClick={dispatchAction}>
+                {filterButtonName}
+            </button>
+        </li>
     );
 };

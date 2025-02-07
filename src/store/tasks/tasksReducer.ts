@@ -5,7 +5,7 @@ import {
     fetchDeleteTask,
     fetchEditTask,
     fetchGetTasks,
-} from './restAPI.ts';
+} from './thunks.ts';
 
 export type ITask = {
     id: string;
@@ -28,7 +28,11 @@ const initialState: TasksState = {
 const tasksSlice = createSlice({
     name: "tasks",
     initialState,
-    reducers: {},
+    reducers: {
+        resetTasks: (state) => {
+            return { ...state, ...initialState };
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchGetTasks.pending, (state) => {
@@ -94,5 +98,6 @@ const tasksSlice = createSlice({
     },
 })
 
+export const { resetTasks } = tasksSlice.actions;
 export const getTasksReducer = tasksSlice.reducer;
 

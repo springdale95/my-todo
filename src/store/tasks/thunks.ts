@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { showAndHideNotification } from '../notifications/thunk';
+import { showAndHideNotification } from '../notifications/showAndHideNotification';
 import { NotificationState } from '../notifications/notificationsReducer';
 import { ITask } from '../tasks/tasksReducer'
 import { AppDispatch, RootState } from '../store';
