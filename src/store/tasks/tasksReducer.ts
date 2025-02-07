@@ -11,27 +11,27 @@ export type ITask = {
     id: string;
     text: string;
     status: boolean;
-}
+};
 
 type TasksState = {
     tasks: ITask[];
     loading: boolean;
     error: string | null;
-}
+};
 
 const initialState: TasksState = {
     tasks: [],
     loading: false,
     error: null,
-}
+};
 
 const tasksSlice = createSlice({
-    name: "tasks",
+    name: 'tasks',
     initialState,
     reducers: {
         resetTasks: (state) => {
             return { ...state, ...initialState };
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,8 +62,8 @@ const tasksSlice = createSlice({
             })
             .addCase(fetchChangeTaskStatus.fulfilled, (state, action) => {
                 state.loading = false;
-                state.tasks = state.tasks.map(task =>
-                    task.id === action.payload.id ? action.payload : task
+                state.tasks = state.tasks.map((task) =>
+                    task.id === action.payload.id ? action.payload : task,
                 );
             })
             .addCase(fetchChangeTaskStatus.rejected, (state, action) => {
@@ -75,29 +75,27 @@ const tasksSlice = createSlice({
             })
             .addCase(fetchDeleteTask.fulfilled, (state, action) => {
                 state.loading = false;
-                state.tasks = state.tasks.filter((item) => item.id !== action.payload.id)
+                state.tasks = state.tasks.filter((item) => item.id !== action.payload.id);
             })
             .addCase(fetchDeleteTask.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
             })
-
             .addCase(fetchEditTask.pending, (state) => {
                 state.loading = true;
             })
             .addCase(fetchEditTask.fulfilled, (state, action) => {
                 state.loading = false;
-                state.tasks = state.tasks.map(task =>
-                    task.id === action.payload.id ? action.payload : task
+                state.tasks = state.tasks.map((task) =>
+                    task.id === action.payload.id ? action.payload : task,
                 );
             })
             .addCase(fetchEditTask.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch tasks.';
-            })
+            });
     },
-})
+});
 
 export const { resetTasks } = tasksSlice.actions;
 export const getTasksReducer = tasksSlice.reducer;
-

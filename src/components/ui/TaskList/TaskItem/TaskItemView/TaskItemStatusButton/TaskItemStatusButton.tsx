@@ -15,7 +15,7 @@ export const TaskItemStatusButton = ({ task, taskButtonViewNames }: ITaskItemSta
         const updatedTask = {
             id: task.id,
             text: task.text,
-            status: !task.status
+            status: !task.status,
         };
 
         dispatch(fetchChangeTaskStatus(updatedTask));

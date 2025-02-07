@@ -13,7 +13,13 @@ export const TaskItem = ({ task }: { task: ITask }) => {
     return (
         <li className={`${styles.task_item} ${task.status ? styles.task_item__done : null}`}>
             {!isEditing && <TaskItemView task={task} handleEditToggle={handleEditToggle} />}
-            {isEditing && <TaskItemEditForm task={task} setIsEditing={setIsEditing} handleEditToggle={handleEditToggle} />}
+            {isEditing && (
+                <TaskItemEditForm
+                    task={task}
+                    setIsEditing={setIsEditing}
+                    handleEditToggle={handleEditToggle}
+                />
+            )}
         </li>
     );
 };

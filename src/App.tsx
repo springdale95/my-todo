@@ -5,8 +5,8 @@ import { AppDispatch } from './store/store';
 import { fetchGetTasks } from './store/tasks/thunks.ts';
 import { resetTasks } from './store/tasks/tasksReducer.ts';
 import { Header, TaskInputForm, Filter, Notification, Preloader, TaskList } from './components';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { selectLoading } from "./store/tasks/selectors.ts";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { selectLoading } from './store/tasks/selectors.ts';
 import { selectShowNotification } from './store/notifications/selectors.ts';
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
     useEffect(() => {
         dispatch(fetchGetTasks());
         return () => {
-            dispatch(resetTasks())
-        }
+            dispatch(resetTasks());
+        };
     }, [dispatch]);
 
     return (
@@ -28,13 +28,15 @@ function App() {
                 <Header />
                 <TaskInputForm />
                 <Filter />
-                {loading ? <Preloader /> :
+                {loading ? (
+                    <Preloader />
+                ) : (
                     <Routes>
                         <Route path="/" element={<TaskList />} />
                         <Route path="/active" element={<TaskList />} />
                         <Route path="/done" element={<TaskList />} />
                     </Routes>
-                }
+                )}
             </div>
         </Router>
     );

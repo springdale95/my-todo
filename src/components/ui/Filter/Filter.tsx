@@ -1,6 +1,6 @@
 import { FilterButtonAll, FilterButtonActive, FilterButtonDone } from '../../../components';
 import styles from '../../../App.module.scss';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 enum FilterButtonsNames {
     All = 'Все',
@@ -9,7 +9,6 @@ enum FilterButtonsNames {
 }
 
 export const Filter = () => {
-
     return (
         <nav className={styles.nav}>
             <ul className={styles.filter_list}>
@@ -22,11 +21,9 @@ export const Filter = () => {
                 </Link>
 
                 <Link to="/done">
-                    <FilterButtonDone filterButtonName={FilterButtonsNames.Done}
-                    />
+                    <FilterButtonDone filterButtonName={FilterButtonsNames.Done} />
                 </Link>
             </ul>
         </nav>
     );
 };
-

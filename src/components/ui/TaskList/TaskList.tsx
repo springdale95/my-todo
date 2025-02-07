@@ -1,6 +1,6 @@
 import { TaskListTitle, TaskItem } from './../../../components';
-import { useSelector } from "react-redux";
-import { selectGetTasks } from "../../../store/tasks/selectors.ts";
+import { useSelector } from 'react-redux';
+import { selectGetTasks } from '../../../store/tasks/selectors.ts';
 import styles from '../../../App.module.scss';
 import { selectFilter } from '../../../store/filter/selector.ts';
 
@@ -23,4 +23,3 @@ export const TaskList = () => {
         </div>
     );
 };
-

@@ -27,7 +27,7 @@ li {
 .form {
     width: 100%;
     display: flex;
-    gap: 30px
+    gap: 30px;
 }
 
 .input_reset {
@@ -53,7 +53,6 @@ li {
     border-radius: 5px;
 }
 
-
 .nav {
     width: 100%;
 }
@@ -62,7 +61,6 @@ li {
     display: flex;
     justify-content: space-between;
 }
-
 
 .btn_reset {
     padding: 0;
@@ -94,7 +92,6 @@ li {
 .tasks_title {
     padding-bottom: 30px;
 }
-
 
 .list {
     display: grid;
@@ -135,14 +132,11 @@ li {
     padding: 10px;
 }
 
-
 @media (max-width: 768px) {
     .app {
-
         width: 90vw;
         gap: 20px;
     }
-
 
     .button {
         width: 100%;

@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { selectGetTasks } from "../../../../store/tasks/selectors.ts";
+import { useSelector } from 'react-redux';
+import { selectGetTasks } from '../../../../store/tasks/selectors.ts';
 import styles from '../../../../App.module.scss';
 import { selectFilter } from '../../../../store/filter/selector.ts';
 
@@ -12,7 +12,7 @@ export const TaskListTitle = () => {
 
     function counter() {
         tasks.forEach((task) => (task.status ? doneCounter++ : activeCounter++));
-    };
+    }
 
     counter();
 
@@ -24,23 +24,23 @@ export const TaskListTitle = () => {
         } else {
             return 'задач';
         }
-    };
+    }
 
     function getEndStatusWord(count: number) {
         return count % 10 === 1 && count % 100 !== 11 ? 'ая' : 'ых';
-    };
+    }
 
     return (
         <h2 className={styles.tasks_title}>
             {tasks.length === 0
                 ? 'Задач пока нет'
-                : `${filter.type === 'all'
-
-                    ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
-                    : filter.type === 'active'
-                        ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
-                        : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
-                }
+                : `${
+                      filter.type === 'all'
+                          ? `У Вас ${activeCounter + doneCounter} ${getTaskWord(activeCounter + doneCounter)}`
+                          : filter.type === 'active'
+                            ? `У Вас ${activeCounter} активн${getEndStatusWord(activeCounter)} ${getTaskWord(activeCounter)}`
+                            : `У Вас ${doneCounter} выполненн${getEndStatusWord(doneCounter)} ${getTaskWord(doneCounter)}`
+                  }
             `}
         </h2>
     );
